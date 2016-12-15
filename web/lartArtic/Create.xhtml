@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LartArticCreateDlg" widgetVar="LartArticCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLartArticTitle}">
+            <h:form id="LartArticCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lartArticController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artCodigo}" for="artCodigo" />
+                        <p:inputText id="artCodigo" value="#{lartArticController.selected.artCodigo}" title="#{bundle.CreateLartArticTitle_artCodigo}" required="true" requiredMessage="#{bundle.CreateLartArticRequiredMessage_artCodigo}"/>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artCodigoar}" for="artCodigoar" />
+                        <p:inputText id="artCodigoar" value="#{lartArticController.selected.artCodigoar}" title="#{bundle.CreateLartArticTitle_artCodigoar}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artDescrip}" for="artDescrip" />
+                        <p:inputText id="artDescrip" value="#{lartArticController.selected.artDescrip}" title="#{bundle.CreateLartArticTitle_artDescrip}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artNomcort}" for="artNomcort" />
+                        <p:inputText id="artNomcort" value="#{lartArticController.selected.artNomcort}" title="#{bundle.CreateLartArticTitle_artNomcort}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artFungible}" for="artFungible" />
+                        <p:inputText id="artFungible" value="#{lartArticController.selected.artFungible}" title="#{bundle.CreateLartArticTitle_artFungible}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artStockmin}" for="artStockmin" />
+                        <p:inputText id="artStockmin" value="#{lartArticController.selected.artStockmin}" title="#{bundle.CreateLartArticTitle_artStockmin}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artStockmax}" for="artStockmax" />
+                        <p:inputText id="artStockmax" value="#{lartArticController.selected.artStockmax}" title="#{bundle.CreateLartArticTitle_artStockmax}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artSwlote}" for="artSwlote" />
+                        <p:inputText id="artSwlote" value="#{lartArticController.selected.artSwlote}" title="#{bundle.CreateLartArticTitle_artSwlote}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artObserva}" for="artObserva" />
+                        <p:inputText id="artObserva" value="#{lartArticController.selected.artObserva}" title="#{bundle.CreateLartArticTitle_artObserva}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artCodigoAf}" for="artCodigoAf" />
+                        <p:inputText id="artCodigoAf" value="#{lartArticController.selected.artCodigoAf}" title="#{bundle.CreateLartArticTitle_artCodigoAf}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artMantenimiento}" for="artMantenimiento" />
+                        <p:inputText id="artMantenimiento" value="#{lartArticController.selected.artMantenimiento}" title="#{bundle.CreateLartArticTitle_artMantenimiento}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artCodalter}" for="artCodalter" />
+                        <p:inputText id="artCodalter" value="#{lartArticController.selected.artCodalter}" title="#{bundle.CreateLartArticTitle_artCodalter}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_artCodnsn}" for="artCodnsn" />
+                        <p:inputText id="artCodnsn" value="#{lartArticController.selected.artCodnsn}" title="#{bundle.CreateLartArticTitle_artCodnsn}" />
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_pstCodigo}" for="pstCodigo" />
+                        <p:selectOneMenu id="pstCodigo" value="#{lartArticController.selected.pstCodigo}" >
+                            <f:selectItems value="#{lpstPreseController.itemsAvailableSelectOne}"
+                                           var="pstCodigoItem"
+                                           itemValue="#{pstCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_claCodigo}" for="claCodigo" />
+                        <p:selectOneMenu id="claCodigo" value="#{lartArticController.selected.claCodigo}" >
+                            <f:selectItems value="#{lclaClaseController.itemsAvailableSelectOne}"
+                                           var="claCodigoItem"
+                                           itemValue="#{claCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_cnjCodigo}" for="cnjCodigo" />
+                        <p:selectOneMenu id="cnjCodigo" value="#{lartArticController.selected.cnjCodigo}" >
+                            <f:selectItems value="#{lcnjConjuController.itemsAvailableSelectOne}"
+                                           var="cnjCodigoItem"
+                                           itemValue="#{cnjCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_dcoCodigo}" for="dcoCodigo" />
+                        <p:selectOneMenu id="dcoCodigo" value="#{lartArticController.selected.dcoCodigo}" >
+                            <f:selectItems value="#{ldcoDetconController.itemsAvailableSelectOne}"
+                                           var="dcoCodigoItem"
+                                           itemValue="#{dcoCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_dsuCodigo}" for="dsuCodigo" />
+                        <p:selectOneMenu id="dsuCodigo" value="#{lartArticController.selected.dsuCodigo}" >
+                            <f:selectItems value="#{ldsuDetsubController.itemsAvailableSelectOne}"
+                                           var="dsuCodigoItem"
+                                           itemValue="#{dsuCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_serCodigo}" for="serCodigo" />
+                        <p:selectOneMenu id="serCodigo" value="#{lartArticController.selected.serCodigo}" >
+                            <f:selectItems value="#{lserServiController.itemsAvailableSelectOne}"
+                                           var="serCodigoItem"
+                                           itemValue="#{serCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_subCodigo}" for="subCodigo" />
+                        <p:selectOneMenu id="subCodigo" value="#{lartArticController.selected.subCodigo}" >
+                            <f:selectItems value="#{lsubSubcjController.itemsAvailableSelectOne}"
+                                           var="subCodigoItem"
+                                           itemValue="#{subCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_tarCodigoTar}" for="tarCodigoTar" />
+                        <p:selectOneMenu id="tarCodigoTar" value="#{lartArticController.selected.tarCodigoTar}" >
+                            <f:selectItems value="#{ltarTpoartController.itemsAvailableSelectOne}"
+                                           var="tarCodigoTarItem"
+                                           itemValue="#{tarCodigoTarItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_tceCodigo}" for="tceCodigo" />
+                        <p:selectOneMenu id="tceCodigo" value="#{lartArticController.selected.tceCodigo}" >
+                            <f:selectItems value="#{ltceTpcomController.itemsAvailableSelectOne}"
+                                           var="tceCodigoItem"
+                                           itemValue="#{tceCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_tcoCodigo}" for="tcoCodigo" />
+                        <p:selectOneMenu id="tcoCodigo" value="#{lartArticController.selected.tcoCodigo}" >
+                            <f:selectItems value="#{ltcoTipconController.itemsAvailableSelectOne}"
+                                           var="tcoCodigoItem"
+                                           itemValue="#{tcoCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLartArticLabel_udmCodigo}" for="udmCodigo" />
+                        <p:selectOneMenu id="udmCodigo" value="#{lartArticController.selected.udmCodigo}" >
+                            <f:selectItems value="#{ludmUnimeController.itemsAvailableSelectOne}"
+                                           var="udmCodigoItem"
+                                           itemValue="#{udmCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lartArticController.create}" value="#{bundle.Save}" update="display,:LartArticListForm:datalist,:growl" oncomplete="handleSubmit(args,'LartArticCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LartArticCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

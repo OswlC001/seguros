@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LtvhTipvhEditDlg" widgetVar="LtvhTipvhEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLtvhTipvhTitle}">
+            <h:form id="LtvhTipvhEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ltvhTipvhController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLtvhTipvhLabel_tvhCodigo}" for="tvhCodigo" />
+                        <p:inputText id="tvhCodigo" value="#{ltvhTipvhController.selected.tvhCodigo}" title="#{bundle.EditLtvhTipvhTitle_tvhCodigo}" required="true" requiredMessage="#{bundle.EditLtvhTipvhRequiredMessage_tvhCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditLtvhTipvhLabel_tvhDescrip}" for="tvhDescrip" />
+                        <p:inputText id="tvhDescrip" value="#{ltvhTipvhController.selected.tvhDescrip}" title="#{bundle.EditLtvhTipvhTitle_tvhDescrip}" required="true" requiredMessage="#{bundle.EditLtvhTipvhRequiredMessage_tvhDescrip}"/>
+                        <p:outputLabel value="#{bundle.EditLtvhTipvhLabel_tvhNumRegistro}" for="tvhNumRegistro" />
+                        <p:inputText id="tvhNumRegistro" value="#{ltvhTipvhController.selected.tvhNumRegistro}" title="#{bundle.EditLtvhTipvhTitle_tvhNumRegistro}" />
+                        <p:outputLabel value="#{bundle.EditLtvhTipvhLabel_tvhRegistroSigla}" for="tvhRegistroSigla" />
+                        <p:inputText id="tvhRegistroSigla" value="#{ltvhTipvhController.selected.tvhRegistroSigla}" title="#{bundle.EditLtvhTipvhTitle_tvhRegistroSigla}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ltvhTipvhController.update}" value="#{bundle.Save}" update="display,:LtvhTipvhListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LtvhTipvhEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LtvhTipvhEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

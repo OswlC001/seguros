@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LcnjConjuCreateDlg" widgetVar="LcnjConjuCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLcnjConjuTitle}">
+            <h:form id="LcnjConjuCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lcnjConjuController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_cnjCodigo}" for="cnjCodigo" />
+                        <p:inputText id="cnjCodigo" value="#{lcnjConjuController.selected.cnjCodigo}" title="#{bundle.CreateLcnjConjuTitle_cnjCodigo}" required="true" requiredMessage="#{bundle.CreateLcnjConjuRequiredMessage_cnjCodigo}"/>
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_cnjDesconj}" for="cnjDesconj" />
+                        <p:inputText id="cnjDesconj" value="#{lcnjConjuController.selected.cnjDesconj}" title="#{bundle.CreateLcnjConjuTitle_cnjDesconj}" />
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_cnjCodigocontable}" for="cnjCodigocontable" />
+                        <p:inputText id="cnjCodigocontable" value="#{lcnjConjuController.selected.cnjCodigocontable}" title="#{bundle.CreateLcnjConjuTitle_cnjCodigocontable}" />
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_cnjCodconjunto}" for="cnjCodconjunto" />
+                        <p:inputText id="cnjCodconjunto" value="#{lcnjConjuController.selected.cnjCodconjunto}" title="#{bundle.CreateLcnjConjuTitle_cnjCodconjunto}" />
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_cnjFungible}" for="cnjFungible" />
+                        <p:inputText id="cnjFungible" value="#{lcnjConjuController.selected.cnjFungible}" title="#{bundle.CreateLcnjConjuTitle_cnjFungible}" />
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_cnjCindiv}" for="cnjCindiv" />
+                        <p:inputText id="cnjCindiv" value="#{lcnjConjuController.selected.cnjCindiv}" title="#{bundle.CreateLcnjConjuTitle_cnjCindiv}" />
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_codTotal}" for="codTotal" />
+                        <p:inputText id="codTotal" value="#{lcnjConjuController.selected.codTotal}" title="#{bundle.CreateLcnjConjuTitle_codTotal}" />
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_cnjRepuesto}" for="cnjRepuesto" />
+                        <p:inputText id="cnjRepuesto" value="#{lcnjConjuController.selected.cnjRepuesto}" title="#{bundle.CreateLcnjConjuTitle_cnjRepuesto}" />
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_cnjCodalter}" for="cnjCodalter" />
+                        <p:inputText id="cnjCodalter" value="#{lcnjConjuController.selected.cnjCodalter}" title="#{bundle.CreateLcnjConjuTitle_cnjCodalter}" />
+                        <p:outputLabel value="#{bundle.CreateLcnjConjuLabel_serCodigo}" for="serCodigo" />
+                        <p:selectOneMenu id="serCodigo" value="#{lcnjConjuController.selected.serCodigo}" >
+                            <f:selectItems value="#{lserServiController.itemsAvailableSelectOne}"
+                                           var="serCodigoItem"
+                                           itemValue="#{serCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lcnjConjuController.create}" value="#{bundle.Save}" update="display,:LcnjConjuListForm:datalist,:growl" oncomplete="handleSubmit(args,'LcnjConjuCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LcnjConjuCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

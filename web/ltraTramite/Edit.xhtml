@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LtraTramiteEditDlg" widgetVar="LtraTramiteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLtraTramiteTitle}">
+            <h:form id="LtraTramiteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ltraTramiteController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLtraTramiteLabel_traCodigo}" for="traCodigo" />
+                        <p:inputText id="traCodigo" value="#{ltraTramiteController.selected.traCodigo}" title="#{bundle.EditLtraTramiteTitle_traCodigo}" required="true" requiredMessage="#{bundle.EditLtraTramiteRequiredMessage_traCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditLtraTramiteLabel_traFecha}" for="traFecha" />
+                        <p:calendar id="traFecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{ltraTramiteController.selected.traFecha}" title="#{bundle.EditLtraTramiteTitle_traFecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLtraTramiteLabel_traObserv}" for="traObserv" />
+                        <p:inputText id="traObserv" value="#{ltraTramiteController.selected.traObserv}" title="#{bundle.EditLtraTramiteTitle_traObserv}" />
+                        <p:outputLabel value="#{bundle.EditLtraTramiteLabel_sinCodigo}" for="sinCodigo" />
+                        <p:selectOneMenu id="sinCodigo" value="#{ltraTramiteController.selected.sinCodigo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lsinSiniestroController.itemsAvailableSelectOne}"
+                                           var="sinCodigoItem"
+                                           itemValue="#{sinCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ltraTramiteController.update}" value="#{bundle.Save}" update="display,:LtraTramiteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LtraTramiteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LtraTramiteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLtarTpoartTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="LtarTpoartListForm">
+                <p:panel header="#{bundle.ListLtarTpoartTitle}">
+                    <p:dataTable id="datalist" value="#{ltarTpoartController.items}" var="item"
+                                 selectionMode="single" selection="#{ltarTpoartController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.tarCodigoTar}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarCodigoTar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarCodigoTar}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarNomtabla}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarNomtabla}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarNam}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarNam}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarNam2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarNam2}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarVidaUtil}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarVidaUtil}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarTipoActivo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarTipoActivo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarDepreciable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarDepreciable}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarDescripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarDescripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarNivel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarNivel}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarCodigoAfCs}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarCodigoAfCs}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarVidaUtilMax}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarVidaUtilMax}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_serCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.serCodigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtarTpoartTitle_tarCodigoTarAf}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tarCodigoTarAf}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ltarTpoartController.prepareCreate}" update=":LtarTpoartCreateForm" oncomplete="PF('LtarTpoartCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":LtarTpoartViewForm" oncomplete="PF('LtarTpoartViewDialog').show()" disabled="#{empty ltarTpoartController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LtarTpoartEditForm" oncomplete="PF('LtarTpoartEditDialog').show()" disabled="#{empty ltarTpoartController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{ltarTpoartController.destroy}" update=":growl,datalist" disabled="#{empty ltarTpoartController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

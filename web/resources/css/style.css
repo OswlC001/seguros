@@ -1,0 +1,247 @@
+/*HOJA DE ESTILOS*/
+
+/*Colores:
+	GRIS: #F0F4F9
+	GRIS MEDIO: #e3eaf0
+	GRIS OBSCURO: #787878
+	CELESTE: #bbcad9
+	PLOMO: #666666
+	VERDE OBSCURO: #004236
+*/
+
+BODY {
+    MARGIN: 0px; onLoad: "MM_preloadImages('../images/h_logos4-over.gif','images/h_logos3-over.gif')"
+}
+.franjaBlanca {
+    BACKGROUND-COLOR: #FFFFFF
+}
+.franjaGris {
+    BACKGROUND-COLOR: #F0F4F9
+}
+.franjaGrisMedio {
+    BACKGROUND-COLOR: #e3eaf0
+}
+.franjaCeleste {
+    BACKGROUND-COLOR: #bbcad9
+}
+
+/************************************* TITULOS ********************************************************************/
+
+/*CABECERA TITULO DE LAS PAGINAS EN EL TOP FRAME*/
+.cabecera{
+    font: 20px Verdana, Arial, Helvetica, sans-serif;
+    color: #004236;
+    line-height:26px;
+    letter-spacing:.21em;
+}
+/*TITULOS MEDIANO*/
+.tituloCabecera {
+    FONT: bold 15px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #004236;
+    TEXT-DECORATION: none;
+    text-align:center
+}
+/*TITULOS DE TABLAS Y DE USUARIO Y LOGIN*/
+.tituloBold {
+    FONT: bold 11px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #004236;
+    TEXT-DECORATION: none
+}
+/*TITULOS NORMAL SIN NEGRITA*/
+.titulo {
+    FONT: 10px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #004236;
+    TEXT-DECORATION: none
+}
+/*TITULO GRANDE*/
+.tituloGrande {
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 50px;
+    FONT-WEIGHT: bold;
+    COLOR: #004236
+}
+/*TITULO GRANDE*/
+.tituloPeque {
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8px;
+    FONT-WEIGHT: bold;
+    COLOR: #004236
+}
+/*TEXTO PLOMO EN NEGRILLA*/
+.textoNegrilla {
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10px;
+    FONT-WEIGHT: bold;
+    COLOR: #787878
+}
+/*TEXTO GENERAL*/
+.textoGeneral {
+    FONT: 10px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    TEXT-DECORATION: none;
+    COLOR: #000000
+}
+/*TEXTO PARA LA FECHA*/
+.fecha {
+    FONT: 10px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #787878;
+    TEXT-DECORATION: none
+}
+
+/*TEXTO PEQUEÑO*/
+.textoPequenio {
+    FONT: 9px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #004236;
+    TEXT-DECORATION: none
+}
+
+/*************************************CAJAS DE TEXTO BOTONES Y COMBOS******************************************************/
+.boton {
+    BORDER-RIGHT: #2a455f 1px solid;
+    BORDER-TOP: #2a455f 1px solid;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    BORDER-LEFT: #2a455f 1px solid;
+    COLOR: #5e80a3;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    BACKGROUND-COLOR: #d9e1ea;
+    TEXT-DECORATION: none
+}
+.comboObligatorio {
+    FONT: 9px Verdana, Arial, Helvetica, sans-serif;
+    background-color:#bbcad9;
+    TEXT-TRANSFORM: uppercase;
+}
+.comboOpcional {
+    FONT: 9px Verdana, Arial, Helvetica, sans-serif;
+    background-color:#FFFFFF;
+}
+.campoNormal {
+    FONT: 10px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: uppercase;
+    BACKGROUND-COLOR: #FFFFFF;
+    TEXT-DECORATION: none
+}
+.campoObligatorio {
+    FONT: 12px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: uppercase;
+    BACKGROUND-COLOR: #bbcad9;
+    TEXT-DECORATION: none
+}
+.campoReadOnly	{
+    FONT: 9px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    BACKGROUND-COLOR: #c0dcc0;
+    TEXT-DECORATION: none
+}
+
+/************************* LISTAS *****************************/
+.list {
+    BORDER-RIGHT: #000000 1px solid;
+    BORDER-TOP: #000000 1px solid;
+    FONT: 10px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    BORDER-BOTTOM: #000000 1px solid;
+    BACKGROUND-COLOR: #d8e0f1;
+    TEXT-DECORATION: none
+}
+
+li {
+    list-style-image:url(../images/i_bulletMenu.gif)
+}
+
+dl {
+    list-style-image:url(../images/i_bulletMenu.gif)
+}
+/*********************** LINKS ***************************/
+
+a {
+    FONT: bold 10px Verdana, Arial, Helvetica, sans-serif;
+    text-decoration:underline;
+    cursor: hand;
+    COLOR: #bbcad9;
+}
+a:hover {
+    FONT: bold 11px Verdana, Arial, Helvetica, sans-serif;
+    color: #bbcad9;
+    text-decoration:underline;
+    font-style:italic;
+}
+a:active {
+    FONT: 11px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #666666;
+    TEXT-DECORATION: none
+}
+/*.navegacion {
+    FONT: 11px Verdana, Arial, Helvetica, sans-serif;
+    text-decoration:underline;
+    TEXT-TRANSFORM: none;
+    COLOR: #666666;
+    TEXT-DECORATION: none
+}*/
+.navegacion {
+    FONT: 10px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #003366;
+    text-decoration: underline;
+    FONT-WEIGHT: bold;
+}
+.navegacionTabla {
+    FONT: 10px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #003366;
+    text-decoration: underline;
+}
+.botonNavegacion {
+    FONT: 9px Verdana, Arial, Helvetica, sans-serif;
+    TEXT-TRANSFORM: none;
+    COLOR: #003366;
+    FONT-WEIGHT: bold;
+}
+/****************OTROS *******************************/
+
+.titulo_amarillo {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #b07734; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.msg_ok {
+    FONT-WEIGHT: bold;FONT-SIZE: 11px; COLOR: #009933; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none;
+
+    color: #336600;
+}
+
+.msg_error {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #CC3300; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+/*TITULOS MEDIANO*/
+.msg_ok_grande {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #009933; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none;
+    color: #336600;
+}
+
+.msg_error_grande {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #CC3300; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+
+.iframeRep{
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: 90%;
+}
+
+.iframeRepHV{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 80%;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LeatEstadEditDlg" widgetVar="LeatEstadEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLeatEstadTitle}">
+            <h:form id="LeatEstadEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{leatEstadController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLeatEstadLabel_leatEstadPK_eatCodigo}" for="leatEstadPK_eatCodigo" />
+                        <p:inputText id="leatEstadPK_eatCodigo" value="#{leatEstadController.selected.leatEstadPK.eatCodigo}" title="#{bundle.EditLeatEstadTitle_leatEstadPK_eatCodigo}" required="true" requiredMessage="#{bundle.EditLeatEstadRequiredMessage_leatEstadPK_eatCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditLeatEstadLabel_eatDescrip}" for="eatDescrip" />
+                        <p:inputText id="eatDescrip" value="#{leatEstadController.selected.eatDescrip}" title="#{bundle.EditLeatEstadTitle_eatDescrip}" />
+                        <p:outputLabel value="#{bundle.EditLeatEstadLabel_lcnaCndar}" for="lcnaCndar" />
+                        <p:selectOneMenu id="lcnaCndar" value="#{leatEstadController.selected.lcnaCndar}" required="true" requiredMessage="#{bundle.EditLeatEstadRequiredMessage_lcnaCndar}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lcnaCndarController.itemsAvailableSelectOne}"
+                                           var="lcnaCndarItem"
+                                           itemValue="#{lcnaCndarItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLeatEstadLabel_serCodigo}" for="serCodigo" />
+                        <p:selectOneMenu id="serCodigo" value="#{leatEstadController.selected.serCodigo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lserServiController.itemsAvailableSelectOne}"
+                                           var="serCodigoItem"
+                                           itemValue="#{serCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{leatEstadController.update}" value="#{bundle.Save}" update="display,:LeatEstadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LeatEstadEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LeatEstadEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

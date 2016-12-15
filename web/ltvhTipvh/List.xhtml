@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLtvhTipvhTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="LtvhTipvhListForm">
+                <p:panel header="#{bundle.ListLtvhTipvhTitle}">
+                    <p:dataTable id="datalist" value="#{ltvhTipvhController.items}" var="item"
+                                 selectionMode="single" selection="#{ltvhTipvhController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.tvhCodigo}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtvhTipvhTitle_tvhCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tvhCodigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtvhTipvhTitle_tvhDescrip}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tvhDescrip}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtvhTipvhTitle_tvhNumRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tvhNumRegistro}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtvhTipvhTitle_tvhRegistroSigla}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tvhRegistroSigla}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ltvhTipvhController.prepareCreate}" update=":LtvhTipvhCreateForm" oncomplete="PF('LtvhTipvhCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":LtvhTipvhViewForm" oncomplete="PF('LtvhTipvhViewDialog').show()" disabled="#{empty ltvhTipvhController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LtvhTipvhEditForm" oncomplete="PF('LtvhTipvhEditDialog').show()" disabled="#{empty ltvhTipvhController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{ltvhTipvhController.destroy}" update=":growl,datalist" disabled="#{empty ltvhTipvhController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

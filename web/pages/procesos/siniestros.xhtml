@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Aseguradora</ui:insert></title>
+        <h:outputStylesheet library="css" name="style.css"/>
+    </h:head>
+
+    <h:body>
+        <center>
+            <h:form>
+                <br/>
+                <h2>Registrar Siniestro</h2>
+                <table border="0">
+                    <tr>
+                        <td><h:outputText value="FECHA:" styleClass="tituloBold"/></td>
+                        <td><p:inputText id="fec" value="#{lsinSiniestroController.selected.sinFecha}" size="12" styleClass="campoObligatorio"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="TIPO DE SINIESTRO:" styleClass="tituloBold"/></td>
+                        <td><p:selectOneMenu id="tsiCodigo" value="#{lsinSiniestroController.selected.tsiCodigo}" >
+                                <f:selectItems value="#{ltsiTipsinieController.itemsAvailableSelectOne}"
+                                               var="tsiCodigoItem"
+                                               itemValue="#{tsiCodigoItem}"/>
+                            </p:selectOneMenu></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="VEHICULO:" styleClass="tituloBold"/></td>
+                        <td><p:inputText id="ve" value="#{siniestro.placa}" size="7" styleClass="campoObligatorio"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="RESPONSABLE:" styleClass="tituloBold"/></td>
+                        <td><p:inputText id="re" value="#{siniestro.responsable}" size="15" styleClass="campoObligatorio"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="RESPONSABILIDAD CIVIL:" styleClass="tituloBold"/></td>
+                        <td><p:inputText id="rec" value="#{lsinSiniestroController.selected.sinRespciv}" size="3" styleClass="campoObligatorio"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="COSTO DE REPARACIÓN:" styleClass="tituloBold"/></td>
+                        <td><p:inputText id="co" value="#{lsinSiniestroController.selected.sinCostrep}" size="7" styleClass="campoObligatorio"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="DEDUCIBLE:" styleClass="tituloBold"/></td>
+                        <td><p:inputText id="de" value="#{lsinSiniestroController.selected.sinDeducible}" size="7" styleClass="campoObligatorio"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="OBSERVACIÓN" styleClass="tituloBold"/></td>
+                        <td><p:inputText id="ob" value="#{lsinSiniestroController.selected.sinObserv}" size="40" styleClass="campoObligatorio"/></td>
+                    </tr>
+                    <tr>
+                        <td>TRAMITE</td>
+                        <td>
+                            <table>
+                                <TR>
+                                    <td>Orden</td>
+                                    <td>Fecha</td>
+                                    <td>Observación</td>
+                                </TR>
+                                <TR>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </TR>
+                            </table>
+                            <input type="submit" value="Agregar" name="agregar" />
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <input type="submit" value="Nuevo" name="nuevo" />
+                <input type="submit" value="Guardar" name="guardar" />
+                <input type="submit" value="Eliminar" name="eliminar" />
+                <input type="reset" value="Cancelar" name="cancelar" />
+                <br/>
+                <br/>
+                <table border="1">
+                    <tr>
+                        <td><select name="buscaPor">
+                                <option>Buscar por vehículo</option>
+                                <option>Buscar por responsable</option>
+                            </select></td>
+                        <td><input type="text" name="txtBusca" value="" size="30" /></td>
+                        <td><input type="submit" value="Buscar" name="buscar" /></td>
+                    </tr>
+                </table>
+                <br/>
+            </h:form>
+        </center>
+    </h:body>
+</html>

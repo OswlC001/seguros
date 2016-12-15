@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LsubSubcjEditDlg" widgetVar="LsubSubcjEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLsubSubcjTitle}">
+            <h:form id="LsubSubcjEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lsubSubcjController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_subCodigo}" for="subCodigo" />
+                        <p:inputText id="subCodigo" value="#{lsubSubcjController.selected.subCodigo}" title="#{bundle.EditLsubSubcjTitle_subCodigo}" required="true" requiredMessage="#{bundle.EditLsubSubcjRequiredMessage_subCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_subDescripc}" for="subDescripc" />
+                        <p:inputText id="subDescripc" value="#{lsubSubcjController.selected.subDescripc}" title="#{bundle.EditLsubSubcjTitle_subDescripc}" />
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_codigoTotalConjunto}" for="codigoTotalConjunto" />
+                        <p:inputText id="codigoTotalConjunto" value="#{lsubSubcjController.selected.codigoTotalConjunto}" title="#{bundle.EditLsubSubcjTitle_codigoTotalConjunto}" />
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_codTotal}" for="codTotal" />
+                        <p:inputText id="codTotal" value="#{lsubSubcjController.selected.codTotal}" title="#{bundle.EditLsubSubcjTitle_codTotal}" />
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_subCindiv}" for="subCindiv" />
+                        <p:inputText id="subCindiv" value="#{lsubSubcjController.selected.subCindiv}" title="#{bundle.EditLsubSubcjTitle_subCindiv}" />
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_subFungible}" for="subFungible" />
+                        <p:inputText id="subFungible" value="#{lsubSubcjController.selected.subFungible}" title="#{bundle.EditLsubSubcjTitle_subFungible}" />
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_subSubconjuntoCodigo}" for="subSubconjuntoCodigo" />
+                        <p:inputText id="subSubconjuntoCodigo" value="#{lsubSubcjController.selected.subSubconjuntoCodigo}" title="#{bundle.EditLsubSubcjTitle_subSubconjuntoCodigo}" />
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_subRepuesto}" for="subRepuesto" />
+                        <p:inputText id="subRepuesto" value="#{lsubSubcjController.selected.subRepuesto}" title="#{bundle.EditLsubSubcjTitle_subRepuesto}" />
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_subCodalter}" for="subCodalter" />
+                        <p:inputText id="subCodalter" value="#{lsubSubcjController.selected.subCodalter}" title="#{bundle.EditLsubSubcjTitle_subCodalter}" />
+                        <p:outputLabel value="#{bundle.EditLsubSubcjLabel_cnjCodigo}" for="cnjCodigo" />
+                        <p:selectOneMenu id="cnjCodigo" value="#{lsubSubcjController.selected.cnjCodigo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lcnjConjuController.itemsAvailableSelectOne}"
+                                           var="cnjCodigoItem"
+                                           itemValue="#{cnjCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lsubSubcjController.update}" value="#{bundle.Save}" update="display,:LsubSubcjListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LsubSubcjEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LsubSubcjEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

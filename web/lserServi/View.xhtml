@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LserServiViewDlg" widgetVar="LserServiViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLserServiTitle}">
+            <h:form id="LserServiViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lserServiController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLserServiLabel_serCodigo}"/>
+                        <h:outputText value="#{lserServiController.selected.serCodigo}" title="#{bundle.ViewLserServiTitle_serCodigo}"/>
+                        <h:outputText value="#{bundle.ViewLserServiLabel_serDescrip}"/>
+                        <h:outputText value="#{lserServiController.selected.serDescrip}" title="#{bundle.ViewLserServiTitle_serDescrip}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LserServiViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

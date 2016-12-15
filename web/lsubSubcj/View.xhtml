@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LsubSubcjViewDlg" widgetVar="LsubSubcjViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLsubSubcjTitle}">
+            <h:form id="LsubSubcjViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lsubSubcjController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_subCodigo}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.subCodigo}" title="#{bundle.ViewLsubSubcjTitle_subCodigo}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_subDescripc}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.subDescripc}" title="#{bundle.ViewLsubSubcjTitle_subDescripc}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_codigoTotalConjunto}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.codigoTotalConjunto}" title="#{bundle.ViewLsubSubcjTitle_codigoTotalConjunto}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_codTotal}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.codTotal}" title="#{bundle.ViewLsubSubcjTitle_codTotal}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_subCindiv}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.subCindiv}" title="#{bundle.ViewLsubSubcjTitle_subCindiv}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_subFungible}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.subFungible}" title="#{bundle.ViewLsubSubcjTitle_subFungible}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_subSubconjuntoCodigo}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.subSubconjuntoCodigo}" title="#{bundle.ViewLsubSubcjTitle_subSubconjuntoCodigo}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_subRepuesto}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.subRepuesto}" title="#{bundle.ViewLsubSubcjTitle_subRepuesto}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_subCodalter}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.subCodalter}" title="#{bundle.ViewLsubSubcjTitle_subCodalter}"/>
+                        <h:outputText value="#{bundle.ViewLsubSubcjLabel_cnjCodigo}"/>
+                        <h:outputText value="#{lsubSubcjController.selected.cnjCodigo}" title="#{bundle.ViewLsubSubcjTitle_cnjCodigo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LsubSubcjViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

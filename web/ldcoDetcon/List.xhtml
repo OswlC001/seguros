@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLdcoDetconTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="LdcoDetconListForm">
+                <p:panel header="#{bundle.ListLdcoDetconTitle}">
+                    <p:dataTable id="datalist" value="#{ldcoDetconController.items}" var="item"
+                                 selectionMode="single" selection="#{ldcoDetconController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.dcoCodigo}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLdcoDetconTitle_dcoCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dcoCodigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLdcoDetconTitle_dcoDescripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dcoDescripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLdcoDetconTitle_dcoEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dcoEstado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLdcoDetconTitle_tcoCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tcoCodigo}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ldcoDetconController.prepareCreate}" update=":LdcoDetconCreateForm" oncomplete="PF('LdcoDetconCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":LdcoDetconViewForm" oncomplete="PF('LdcoDetconViewDialog').show()" disabled="#{empty ldcoDetconController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LdcoDetconEditForm" oncomplete="PF('LdcoDetconEditDialog').show()" disabled="#{empty ldcoDetconController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{ldcoDetconController.destroy}" update=":growl,datalist" disabled="#{empty ldcoDetconController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

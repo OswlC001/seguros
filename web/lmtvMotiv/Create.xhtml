@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LmtvMotivCreateDlg" widgetVar="LmtvMotivCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLmtvMotivTitle}">
+            <h:form id="LmtvMotivCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lmtvMotivController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLmtvMotivLabel_mtvCodigo}" for="mtvCodigo" />
+                        <p:inputText id="mtvCodigo" value="#{lmtvMotivController.selected.mtvCodigo}" title="#{bundle.CreateLmtvMotivTitle_mtvCodigo}" required="true" requiredMessage="#{bundle.CreateLmtvMotivRequiredMessage_mtvCodigo}"/>
+                        <p:outputLabel value="#{bundle.CreateLmtvMotivLabel_mtvDestmoti}" for="mtvDestmoti" />
+                        <p:inputText id="mtvDestmoti" value="#{lmtvMotivController.selected.mtvDestmoti}" title="#{bundle.CreateLmtvMotivTitle_mtvDestmoti}" required="true" requiredMessage="#{bundle.CreateLmtvMotivRequiredMessage_mtvDestmoti}"/>
+                        <p:outputLabel value="#{bundle.CreateLmtvMotivLabel_mtvTipo}" for="mtvTipo" />
+                        <p:inputText id="mtvTipo" value="#{lmtvMotivController.selected.mtvTipo}" title="#{bundle.CreateLmtvMotivTitle_mtvTipo}" required="true" requiredMessage="#{bundle.CreateLmtvMotivRequiredMessage_mtvTipo}"/>
+                        <p:outputLabel value="#{bundle.CreateLmtvMotivLabel_mtvCodigoIe}" for="mtvCodigoIe" />
+                        <p:inputText id="mtvCodigoIe" value="#{lmtvMotivController.selected.mtvCodigoIe}" title="#{bundle.CreateLmtvMotivTitle_mtvCodigoIe}" />
+                        <p:outputLabel value="#{bundle.CreateLmtvMotivLabel_mtvEspecial}" for="mtvEspecial" />
+                        <p:inputText id="mtvEspecial" value="#{lmtvMotivController.selected.mtvEspecial}" title="#{bundle.CreateLmtvMotivTitle_mtvEspecial}" />
+                        <p:outputLabel value="#{bundle.CreateLmtvMotivLabel_mtvReplica}" for="mtvReplica" />
+                        <p:inputText id="mtvReplica" value="#{lmtvMotivController.selected.mtvReplica}" title="#{bundle.CreateLmtvMotivTitle_mtvReplica}" />
+                        <p:outputLabel value="#{bundle.CreateLmtvMotivLabel_mtvPerfil}" for="mtvPerfil" />
+                        <p:inputText id="mtvPerfil" value="#{lmtvMotivController.selected.mtvPerfil}" title="#{bundle.CreateLmtvMotivTitle_mtvPerfil}" />
+                        <p:outputLabel value="#{bundle.CreateLmtvMotivLabel_tmoCodigo}" for="tmoCodigo" />
+                        <p:selectOneMenu id="tmoCodigo" value="#{lmtvMotivController.selected.tmoCodigo}" required="true" requiredMessage="#{bundle.EditLmtvMotivRequiredMessage_tmoCodigo}">
+                            <f:selectItems value="#{ltmoTpmovController.itemsAvailableSelectOne}"
+                                           var="tmoCodigoItem"
+                                           itemValue="#{tmoCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lmtvMotivController.create}" value="#{bundle.Save}" update="display,:LmtvMotivListForm:datalist,:growl" oncomplete="handleSubmit(args,'LmtvMotivCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LmtvMotivCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

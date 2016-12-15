@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLvehVehicTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="LvehVehicListForm">
+                <p:panel header="#{bundle.ListLvehVehicTitle}">
+                    <p:dataTable id="datalist" value="#{lvehVehicController.items}" var="item"
+                                 selectionMode="single" selection="#{lvehVehicController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.vehCodigo}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehCodigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_memCedula}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.memCedula}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_uniCodigo2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uniCodigo2}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_orgNumero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.orgNumero}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_porOrgNumero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.porOrgNumero}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehNumreg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehNumreg}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehAno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehAno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehColor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehColor}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehFeccom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehFeccom}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehValcom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehValcom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehChasis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehChasis}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehNummotor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehNummotor}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehFechasig}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehFechasig}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehPlaca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehPlaca}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehFecbaja}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehFecbaja}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehNumacta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehNumacta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehDueorig}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehDueorig}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehTiemdur}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehTiemdur}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehNumdicta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehNumdicta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehValremat}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehValremat}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehFecrecep}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehFecrecep}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehObservac}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehObservac}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehEstado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehObservacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehObservacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehPlacaAnt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehPlacaAnt}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehKilometraje}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehKilometraje}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehCupo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehCupo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehSeguro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehSeguro}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehStiker}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehStiker}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_vehPoliza}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehPoliza}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_artCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.artCodigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_leatEstad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.leatEstad}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_mtvCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mtvCodigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_texCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.texCodigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_tmoCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tmoCodigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLvehVehicTitle_tvhCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tvhCodigo}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{lvehVehicController.prepareCreate}" update=":LvehVehicCreateForm" oncomplete="PF('LvehVehicCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":LvehVehicViewForm" oncomplete="PF('LvehVehicViewDialog').show()" disabled="#{empty lvehVehicController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LvehVehicEditForm" oncomplete="PF('LvehVehicEditDialog').show()" disabled="#{empty lvehVehicController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{lvehVehicController.destroy}" update=":growl,datalist" disabled="#{empty lvehVehicController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

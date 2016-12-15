@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LserServiEditDlg" widgetVar="LserServiEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLserServiTitle}">
+            <h:form id="LserServiEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lserServiController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLserServiLabel_serCodigo}" for="serCodigo" />
+                        <p:inputText id="serCodigo" value="#{lserServiController.selected.serCodigo}" title="#{bundle.EditLserServiTitle_serCodigo}" required="true" requiredMessage="#{bundle.EditLserServiRequiredMessage_serCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditLserServiLabel_serDescrip}" for="serDescrip" />
+                        <p:inputText id="serDescrip" value="#{lserServiController.selected.serDescrip}" title="#{bundle.EditLserServiTitle_serDescrip}" required="true" requiredMessage="#{bundle.EditLserServiRequiredMessage_serDescrip}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lserServiController.update}" value="#{bundle.Save}" update="display,:LserServiListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LserServiEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LserServiEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

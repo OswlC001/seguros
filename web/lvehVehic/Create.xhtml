@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LvehVehicCreateDlg" widgetVar="LvehVehicCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLvehVehicTitle}">
+            <h:form id="LvehVehicCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lvehVehicController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehCodigo}" for="vehCodigo" />
+                        <p:inputText id="vehCodigo" value="#{lvehVehicController.selected.vehCodigo}" title="#{bundle.CreateLvehVehicTitle_vehCodigo}" required="true" requiredMessage="#{bundle.CreateLvehVehicRequiredMessage_vehCodigo}"/>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_memCedula}" for="memCedula" />
+                        <p:inputText id="memCedula" value="#{lvehVehicController.selected.memCedula}" title="#{bundle.CreateLvehVehicTitle_memCedula}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_uniCodigo2}" for="uniCodigo2" />
+                        <p:inputText id="uniCodigo2" value="#{lvehVehicController.selected.uniCodigo2}" title="#{bundle.CreateLvehVehicTitle_uniCodigo2}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_orgNumero}" for="orgNumero" />
+                        <p:inputText id="orgNumero" value="#{lvehVehicController.selected.orgNumero}" title="#{bundle.CreateLvehVehicTitle_orgNumero}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_porOrgNumero}" for="porOrgNumero" />
+                        <p:inputText id="porOrgNumero" value="#{lvehVehicController.selected.porOrgNumero}" title="#{bundle.CreateLvehVehicTitle_porOrgNumero}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehNumreg}" for="vehNumreg" />
+                        <p:inputText id="vehNumreg" value="#{lvehVehicController.selected.vehNumreg}" title="#{bundle.CreateLvehVehicTitle_vehNumreg}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehAno}" for="vehAno" />
+                        <p:inputText id="vehAno" value="#{lvehVehicController.selected.vehAno}" title="#{bundle.CreateLvehVehicTitle_vehAno}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehColor}" for="vehColor" />
+                        <p:inputText id="vehColor" value="#{lvehVehicController.selected.vehColor}" title="#{bundle.CreateLvehVehicTitle_vehColor}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehFeccom}" for="vehFeccom" />
+                        <p:calendar id="vehFeccom" pattern="MM/dd/yyyy HH:mm:ss" value="#{lvehVehicController.selected.vehFeccom}" title="#{bundle.EditLvehVehicTitle_vehFeccom}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehValcom}" for="vehValcom" />
+                        <p:inputText id="vehValcom" value="#{lvehVehicController.selected.vehValcom}" title="#{bundle.CreateLvehVehicTitle_vehValcom}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehChasis}" for="vehChasis" />
+                        <p:inputText id="vehChasis" value="#{lvehVehicController.selected.vehChasis}" title="#{bundle.CreateLvehVehicTitle_vehChasis}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehNummotor}" for="vehNummotor" />
+                        <p:inputText id="vehNummotor" value="#{lvehVehicController.selected.vehNummotor}" title="#{bundle.CreateLvehVehicTitle_vehNummotor}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehFechasig}" for="vehFechasig" />
+                        <p:calendar id="vehFechasig" pattern="MM/dd/yyyy HH:mm:ss" value="#{lvehVehicController.selected.vehFechasig}" title="#{bundle.EditLvehVehicTitle_vehFechasig}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehPlaca}" for="vehPlaca" />
+                        <p:inputText id="vehPlaca" value="#{lvehVehicController.selected.vehPlaca}" title="#{bundle.CreateLvehVehicTitle_vehPlaca}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehFecbaja}" for="vehFecbaja" />
+                        <p:calendar id="vehFecbaja" pattern="MM/dd/yyyy HH:mm:ss" value="#{lvehVehicController.selected.vehFecbaja}" title="#{bundle.EditLvehVehicTitle_vehFecbaja}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehNumacta}" for="vehNumacta" />
+                        <p:inputText id="vehNumacta" value="#{lvehVehicController.selected.vehNumacta}" title="#{bundle.CreateLvehVehicTitle_vehNumacta}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehDueorig}" for="vehDueorig" />
+                        <p:inputText id="vehDueorig" value="#{lvehVehicController.selected.vehDueorig}" title="#{bundle.CreateLvehVehicTitle_vehDueorig}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehTiemdur}" for="vehTiemdur" />
+                        <p:inputText id="vehTiemdur" value="#{lvehVehicController.selected.vehTiemdur}" title="#{bundle.CreateLvehVehicTitle_vehTiemdur}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehNumdicta}" for="vehNumdicta" />
+                        <p:inputText id="vehNumdicta" value="#{lvehVehicController.selected.vehNumdicta}" title="#{bundle.CreateLvehVehicTitle_vehNumdicta}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehValremat}" for="vehValremat" />
+                        <p:inputText id="vehValremat" value="#{lvehVehicController.selected.vehValremat}" title="#{bundle.CreateLvehVehicTitle_vehValremat}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehFecrecep}" for="vehFecrecep" />
+                        <p:calendar id="vehFecrecep" pattern="MM/dd/yyyy HH:mm:ss" value="#{lvehVehicController.selected.vehFecrecep}" title="#{bundle.EditLvehVehicTitle_vehFecrecep}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehObservac}" for="vehObservac" />
+                        <p:inputText id="vehObservac" value="#{lvehVehicController.selected.vehObservac}" title="#{bundle.CreateLvehVehicTitle_vehObservac}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehEstado}" for="vehEstado" />
+                        <p:inputText id="vehEstado" value="#{lvehVehicController.selected.vehEstado}" title="#{bundle.CreateLvehVehicTitle_vehEstado}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehObservacion}" for="vehObservacion" />
+                        <p:inputText id="vehObservacion" value="#{lvehVehicController.selected.vehObservacion}" title="#{bundle.CreateLvehVehicTitle_vehObservacion}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehPlacaAnt}" for="vehPlacaAnt" />
+                        <p:inputText id="vehPlacaAnt" value="#{lvehVehicController.selected.vehPlacaAnt}" title="#{bundle.CreateLvehVehicTitle_vehPlacaAnt}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehKilometraje}" for="vehKilometraje" />
+                        <p:inputText id="vehKilometraje" value="#{lvehVehicController.selected.vehKilometraje}" title="#{bundle.CreateLvehVehicTitle_vehKilometraje}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehCupo}" for="vehCupo" />
+                        <p:inputText id="vehCupo" value="#{lvehVehicController.selected.vehCupo}" title="#{bundle.CreateLvehVehicTitle_vehCupo}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehSeguro}" for="vehSeguro" />
+                        <p:inputText id="vehSeguro" value="#{lvehVehicController.selected.vehSeguro}" title="#{bundle.CreateLvehVehicTitle_vehSeguro}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehStiker}" for="vehStiker" />
+                        <p:inputText id="vehStiker" value="#{lvehVehicController.selected.vehStiker}" title="#{bundle.CreateLvehVehicTitle_vehStiker}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_vehPoliza}" for="vehPoliza" />
+                        <p:inputText id="vehPoliza" value="#{lvehVehicController.selected.vehPoliza}" title="#{bundle.CreateLvehVehicTitle_vehPoliza}" />
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_artCodigo}" for="artCodigo" />
+                        <p:selectOneMenu id="artCodigo" value="#{lvehVehicController.selected.artCodigo}" required="true" requiredMessage="#{bundle.EditLvehVehicRequiredMessage_artCodigo}">
+                            <f:selectItems value="#{lartArticController.itemsAvailableSelectOne}"
+                                           var="artCodigoItem"
+                                           itemValue="#{artCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_leatEstad}" for="leatEstad" />
+                        <p:selectOneMenu id="leatEstad" value="#{lvehVehicController.selected.leatEstad}" >
+                            <f:selectItems value="#{leatEstadController.itemsAvailableSelectOne}"
+                                           var="leatEstadItem"
+                                           itemValue="#{leatEstadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_mtvCodigo}" for="mtvCodigo" />
+                        <p:selectOneMenu id="mtvCodigo" value="#{lvehVehicController.selected.mtvCodigo}" >
+                            <f:selectItems value="#{lmtvMotivController.itemsAvailableSelectOne}"
+                                           var="mtvCodigoItem"
+                                           itemValue="#{mtvCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_texCodigo}" for="texCodigo" />
+                        <p:selectOneMenu id="texCodigo" value="#{lvehVehicController.selected.texCodigo}" >
+                            <f:selectItems value="#{ltexTpexiController.itemsAvailableSelectOne}"
+                                           var="texCodigoItem"
+                                           itemValue="#{texCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_tmoCodigo}" for="tmoCodigo" />
+                        <p:selectOneMenu id="tmoCodigo" value="#{lvehVehicController.selected.tmoCodigo}" >
+                            <f:selectItems value="#{ltmoTpmovController.itemsAvailableSelectOne}"
+                                           var="tmoCodigoItem"
+                                           itemValue="#{tmoCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLvehVehicLabel_tvhCodigo}" for="tvhCodigo" />
+                        <p:selectOneMenu id="tvhCodigo" value="#{lvehVehicController.selected.tvhCodigo}" >
+                            <f:selectItems value="#{ltvhTipvhController.itemsAvailableSelectOne}"
+                                           var="tvhCodigoItem"
+                                           itemValue="#{tvhCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lvehVehicController.create}" value="#{bundle.Save}" update="display,:LvehVehicListForm:datalist,:growl" oncomplete="handleSubmit(args,'LvehVehicCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LvehVehicCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

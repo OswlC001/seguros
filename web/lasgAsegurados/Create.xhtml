@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LasgAseguradosCreateDlg" widgetVar="LasgAseguradosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLasgAseguradosTitle}">
+            <h:form id="LasgAseguradosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lasgAseguradosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLasgAseguradosLabel_asgCodigo}" for="asgCodigo" />
+                        <p:inputText id="asgCodigo" value="#{lasgAseguradosController.selected.asgCodigo}" title="#{bundle.CreateLasgAseguradosTitle_asgCodigo}" required="true" requiredMessage="#{bundle.CreateLasgAseguradosRequiredMessage_asgCodigo}"/>
+                        <p:outputLabel value="#{bundle.CreateLasgAseguradosLabel_asgFecha}" for="asgFecha" />
+                        <p:calendar id="asgFecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{lasgAseguradosController.selected.asgFecha}" title="#{bundle.EditLasgAseguradosTitle_asgFecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateLasgAseguradosLabel_asgEstado}" for="asgEstado" />
+                        <p:inputText id="asgEstado" value="#{lasgAseguradosController.selected.asgEstado}" title="#{bundle.CreateLasgAseguradosTitle_asgEstado}" />
+                        <p:outputLabel value="#{bundle.CreateLasgAseguradosLabel_asgPrima}" for="asgPrima" />
+                        <p:inputText id="asgPrima" value="#{lasgAseguradosController.selected.asgPrima}" title="#{bundle.CreateLasgAseguradosTitle_asgPrima}" />
+                        <p:outputLabel value="#{bundle.CreateLasgAseguradosLabel_polCodigo}" for="polCodigo" />
+                        <p:selectOneMenu id="polCodigo" value="#{lasgAseguradosController.selected.polCodigo}" >
+                            <f:selectItems value="#{lpolPolizaController.itemsAvailableSelectOne}"
+                                           var="polCodigoItem"
+                                           itemValue="#{polCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLasgAseguradosLabel_vehCodigo}" for="vehCodigo" />
+                        <p:selectOneMenu id="vehCodigo" value="#{lasgAseguradosController.selected.vehCodigo}" >
+                            <f:selectItems value="#{lvehVehicController.itemsAvailableSelectOne}"
+                                           var="vehCodigoItem"
+                                           itemValue="#{vehCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lasgAseguradosController.create}" value="#{bundle.Save}" update="display,:LasgAseguradosListForm:datalist,:growl" oncomplete="handleSubmit(args,'LasgAseguradosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LasgAseguradosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

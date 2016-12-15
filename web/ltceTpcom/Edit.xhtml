@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LtceTpcomEditDlg" widgetVar="LtceTpcomEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLtceTpcomTitle}">
+            <h:form id="LtceTpcomEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ltceTpcomController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLtceTpcomLabel_tceCodigo}" for="tceCodigo" />
+                        <p:inputText id="tceCodigo" value="#{ltceTpcomController.selected.tceCodigo}" title="#{bundle.EditLtceTpcomTitle_tceCodigo}" required="true" requiredMessage="#{bundle.EditLtceTpcomRequiredMessage_tceCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditLtceTpcomLabel_tceDescrip}" for="tceDescrip" />
+                        <p:inputText id="tceDescrip" value="#{ltceTpcomController.selected.tceDescrip}" title="#{bundle.EditLtceTpcomTitle_tceDescrip}" required="true" requiredMessage="#{bundle.EditLtceTpcomRequiredMessage_tceDescrip}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ltceTpcomController.update}" value="#{bundle.Save}" update="display,:LtceTpcomListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LtceTpcomEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LtceTpcomEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

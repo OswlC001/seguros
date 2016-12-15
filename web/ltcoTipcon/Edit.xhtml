@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LtcoTipconEditDlg" widgetVar="LtcoTipconEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLtcoTipconTitle}">
+            <h:form id="LtcoTipconEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ltcoTipconController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLtcoTipconLabel_tcoCodigo}" for="tcoCodigo" />
+                        <p:inputText id="tcoCodigo" value="#{ltcoTipconController.selected.tcoCodigo}" title="#{bundle.EditLtcoTipconTitle_tcoCodigo}" required="true" requiredMessage="#{bundle.EditLtcoTipconRequiredMessage_tcoCodigo}"/>
+                        <p:outputLabel value="#{bundle.EditLtcoTipconLabel_tcoDescripcion}" for="tcoDescripcion" />
+                        <p:inputText id="tcoDescripcion" value="#{ltcoTipconController.selected.tcoDescripcion}" title="#{bundle.EditLtcoTipconTitle_tcoDescripcion}" />
+                        <p:outputLabel value="#{bundle.EditLtcoTipconLabel_tcoEstado}" for="tcoEstado" />
+                        <p:inputText id="tcoEstado" value="#{ltcoTipconController.selected.tcoEstado}" title="#{bundle.EditLtcoTipconTitle_tcoEstado}" />
+                        <p:outputLabel value="#{bundle.EditLtcoTipconLabel_serCodigo}" for="serCodigo" />
+                        <p:selectOneMenu id="serCodigo" value="#{ltcoTipconController.selected.serCodigo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lserServiController.itemsAvailableSelectOne}"
+                                           var="serCodigoItem"
+                                           itemValue="#{serCodigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ltcoTipconController.update}" value="#{bundle.Save}" update="display,:LtcoTipconListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LtcoTipconEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LtcoTipconEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

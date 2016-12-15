@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LaseAseguradoraCreateDlg" widgetVar="LaseAseguradoraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLaseAseguradoraTitle}">
+            <h:form id="LaseAseguradoraCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{laseAseguradoraController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLaseAseguradoraLabel_aseCodigo}" for="aseCodigo" />
+                        <p:inputText id="aseCodigo" value="#{laseAseguradoraController.selected.aseCodigo}" title="#{bundle.CreateLaseAseguradoraTitle_aseCodigo}" required="true" requiredMessage="#{bundle.CreateLaseAseguradoraRequiredMessage_aseCodigo}"/>
+                        <p:outputLabel value="#{bundle.CreateLaseAseguradoraLabel_aseRuc}" for="aseRuc" />
+                        <p:inputText id="aseRuc" value="#{laseAseguradoraController.selected.aseRuc}" title="#{bundle.CreateLaseAseguradoraTitle_aseRuc}" />
+                        <p:outputLabel value="#{bundle.CreateLaseAseguradoraLabel_aseNombre}" for="aseNombre" />
+                        <p:inputText id="aseNombre" value="#{laseAseguradoraController.selected.aseNombre}" title="#{bundle.CreateLaseAseguradoraTitle_aseNombre}" />
+                        <p:outputLabel value="#{bundle.CreateLaseAseguradoraLabel_aseDirecc}" for="aseDirecc" />
+                        <p:inputText id="aseDirecc" value="#{laseAseguradoraController.selected.aseDirecc}" title="#{bundle.CreateLaseAseguradoraTitle_aseDirecc}" />
+                        <p:outputLabel value="#{bundle.CreateLaseAseguradoraLabel_aseTelef}" for="aseTelef" />
+                        <p:inputText id="aseTelef" value="#{laseAseguradoraController.selected.aseTelef}" title="#{bundle.CreateLaseAseguradoraTitle_aseTelef}" />
+                        <p:outputLabel value="#{bundle.CreateLaseAseguradoraLabel_aseCedrepresent}" for="aseCedrepresent" />
+                        <p:inputText id="aseCedrepresent" value="#{laseAseguradoraController.selected.aseCedrepresent}" title="#{bundle.CreateLaseAseguradoraTitle_aseCedrepresent}" />
+                        <p:outputLabel value="#{bundle.CreateLaseAseguradoraLabel_aseNomrepresent}" for="aseNomrepresent" />
+                        <p:inputText id="aseNomrepresent" value="#{laseAseguradoraController.selected.aseNomrepresent}" title="#{bundle.CreateLaseAseguradoraTitle_aseNomrepresent}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{laseAseguradoraController.create}" value="#{bundle.Save}" update="display,:LaseAseguradoraListForm:datalist,:growl" oncomplete="handleSubmit(args,'LaseAseguradoraCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LaseAseguradoraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

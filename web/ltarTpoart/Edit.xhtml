@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LtarTpoartEditDlg" widgetVar="LtarTpoartEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLtarTpoartTitle}">
+            <h:form id="LtarTpoartEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ltarTpoartController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarCodigoTar}" for="tarCodigoTar" />
+                        <p:inputText id="tarCodigoTar" value="#{ltarTpoartController.selected.tarCodigoTar}" title="#{bundle.EditLtarTpoartTitle_tarCodigoTar}" required="true" requiredMessage="#{bundle.EditLtarTpoartRequiredMessage_tarCodigoTar}"/>
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarNomtabla}" for="tarNomtabla" />
+                        <p:inputText id="tarNomtabla" value="#{ltarTpoartController.selected.tarNomtabla}" title="#{bundle.EditLtarTpoartTitle_tarNomtabla}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarNam}" for="tarNam" />
+                        <p:inputText id="tarNam" value="#{ltarTpoartController.selected.tarNam}" title="#{bundle.EditLtarTpoartTitle_tarNam}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarNam2}" for="tarNam2" />
+                        <p:inputText id="tarNam2" value="#{ltarTpoartController.selected.tarNam2}" title="#{bundle.EditLtarTpoartTitle_tarNam2}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarVidaUtil}" for="tarVidaUtil" />
+                        <p:inputText id="tarVidaUtil" value="#{ltarTpoartController.selected.tarVidaUtil}" title="#{bundle.EditLtarTpoartTitle_tarVidaUtil}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarTipoActivo}" for="tarTipoActivo" />
+                        <p:inputText id="tarTipoActivo" value="#{ltarTpoartController.selected.tarTipoActivo}" title="#{bundle.EditLtarTpoartTitle_tarTipoActivo}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarDepreciable}" for="tarDepreciable" />
+                        <p:inputText id="tarDepreciable" value="#{ltarTpoartController.selected.tarDepreciable}" title="#{bundle.EditLtarTpoartTitle_tarDepreciable}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarDescripcion}" for="tarDescripcion" />
+                        <p:inputText id="tarDescripcion" value="#{ltarTpoartController.selected.tarDescripcion}" title="#{bundle.EditLtarTpoartTitle_tarDescripcion}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarNivel}" for="tarNivel" />
+                        <p:inputText id="tarNivel" value="#{ltarTpoartController.selected.tarNivel}" title="#{bundle.EditLtarTpoartTitle_tarNivel}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarCodigoAfCs}" for="tarCodigoAfCs" />
+                        <p:inputText id="tarCodigoAfCs" value="#{ltarTpoartController.selected.tarCodigoAfCs}" title="#{bundle.EditLtarTpoartTitle_tarCodigoAfCs}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarVidaUtilMax}" for="tarVidaUtilMax" />
+                        <p:inputText id="tarVidaUtilMax" value="#{ltarTpoartController.selected.tarVidaUtilMax}" title="#{bundle.EditLtarTpoartTitle_tarVidaUtilMax}" />
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_serCodigo}" for="serCodigo" />
+                        <p:selectOneMenu id="serCodigo" value="#{ltarTpoartController.selected.serCodigo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lserServiController.itemsAvailableSelectOne}"
+                                           var="serCodigoItem"
+                                           itemValue="#{serCodigoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLtarTpoartLabel_tarCodigoTarAf}" for="tarCodigoTarAf" />
+                        <p:selectOneMenu id="tarCodigoTarAf" value="#{ltarTpoartController.selected.tarCodigoTarAf}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ltarTpoartController.itemsAvailableSelectOne}"
+                                           var="tarCodigoTarAfItem"
+                                           itemValue="#{tarCodigoTarAfItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ltarTpoartController.update}" value="#{bundle.Save}" update="display,:LtarTpoartListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LtarTpoartEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LtarTpoartEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

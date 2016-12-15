@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LvehVehicViewDlg" widgetVar="LvehVehicViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLvehVehicTitle}">
+            <h:form id="LvehVehicViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lvehVehicController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehCodigo}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehCodigo}" title="#{bundle.ViewLvehVehicTitle_vehCodigo}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_memCedula}"/>
+                        <h:outputText value="#{lvehVehicController.selected.memCedula}" title="#{bundle.ViewLvehVehicTitle_memCedula}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_uniCodigo2}"/>
+                        <h:outputText value="#{lvehVehicController.selected.uniCodigo2}" title="#{bundle.ViewLvehVehicTitle_uniCodigo2}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_orgNumero}"/>
+                        <h:outputText value="#{lvehVehicController.selected.orgNumero}" title="#{bundle.ViewLvehVehicTitle_orgNumero}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_porOrgNumero}"/>
+                        <h:outputText value="#{lvehVehicController.selected.porOrgNumero}" title="#{bundle.ViewLvehVehicTitle_porOrgNumero}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehNumreg}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehNumreg}" title="#{bundle.ViewLvehVehicTitle_vehNumreg}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehAno}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehAno}" title="#{bundle.ViewLvehVehicTitle_vehAno}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehColor}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehColor}" title="#{bundle.ViewLvehVehicTitle_vehColor}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehFeccom}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehFeccom}" title="#{bundle.ViewLvehVehicTitle_vehFeccom}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehValcom}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehValcom}" title="#{bundle.ViewLvehVehicTitle_vehValcom}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehChasis}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehChasis}" title="#{bundle.ViewLvehVehicTitle_vehChasis}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehNummotor}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehNummotor}" title="#{bundle.ViewLvehVehicTitle_vehNummotor}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehFechasig}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehFechasig}" title="#{bundle.ViewLvehVehicTitle_vehFechasig}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehPlaca}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehPlaca}" title="#{bundle.ViewLvehVehicTitle_vehPlaca}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehFecbaja}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehFecbaja}" title="#{bundle.ViewLvehVehicTitle_vehFecbaja}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehNumacta}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehNumacta}" title="#{bundle.ViewLvehVehicTitle_vehNumacta}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehDueorig}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehDueorig}" title="#{bundle.ViewLvehVehicTitle_vehDueorig}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehTiemdur}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehTiemdur}" title="#{bundle.ViewLvehVehicTitle_vehTiemdur}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehNumdicta}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehNumdicta}" title="#{bundle.ViewLvehVehicTitle_vehNumdicta}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehValremat}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehValremat}" title="#{bundle.ViewLvehVehicTitle_vehValremat}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehFecrecep}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehFecrecep}" title="#{bundle.ViewLvehVehicTitle_vehFecrecep}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehObservac}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehObservac}" title="#{bundle.ViewLvehVehicTitle_vehObservac}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehEstado}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehEstado}" title="#{bundle.ViewLvehVehicTitle_vehEstado}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehObservacion}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehObservacion}" title="#{bundle.ViewLvehVehicTitle_vehObservacion}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehPlacaAnt}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehPlacaAnt}" title="#{bundle.ViewLvehVehicTitle_vehPlacaAnt}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehKilometraje}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehKilometraje}" title="#{bundle.ViewLvehVehicTitle_vehKilometraje}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehCupo}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehCupo}" title="#{bundle.ViewLvehVehicTitle_vehCupo}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehSeguro}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehSeguro}" title="#{bundle.ViewLvehVehicTitle_vehSeguro}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehStiker}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehStiker}" title="#{bundle.ViewLvehVehicTitle_vehStiker}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_vehPoliza}"/>
+                        <h:outputText value="#{lvehVehicController.selected.vehPoliza}" title="#{bundle.ViewLvehVehicTitle_vehPoliza}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_artCodigo}"/>
+                        <h:outputText value="#{lvehVehicController.selected.artCodigo}" title="#{bundle.ViewLvehVehicTitle_artCodigo}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_leatEstad}"/>
+                        <h:outputText value="#{lvehVehicController.selected.leatEstad}" title="#{bundle.ViewLvehVehicTitle_leatEstad}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_mtvCodigo}"/>
+                        <h:outputText value="#{lvehVehicController.selected.mtvCodigo}" title="#{bundle.ViewLvehVehicTitle_mtvCodigo}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_texCodigo}"/>
+                        <h:outputText value="#{lvehVehicController.selected.texCodigo}" title="#{bundle.ViewLvehVehicTitle_texCodigo}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_tmoCodigo}"/>
+                        <h:outputText value="#{lvehVehicController.selected.tmoCodigo}" title="#{bundle.ViewLvehVehicTitle_tmoCodigo}"/>
+                        <h:outputText value="#{bundle.ViewLvehVehicLabel_tvhCodigo}"/>
+                        <h:outputText value="#{lvehVehicController.selected.tvhCodigo}" title="#{bundle.ViewLvehVehicTitle_tvhCodigo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LvehVehicViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

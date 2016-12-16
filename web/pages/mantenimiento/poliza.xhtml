@@ -7,76 +7,120 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title><ui:insert name="title">Aseguradora</ui:insert></title>
+        <title><ui:insert name="title">Poliza</ui:insert></title>
         <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
 
     <h:body>
         <center>
-            <h:form>
+            <h:form id="formulario">
+                <p:growl id="growl" life="5000" />
                 <br/>
                 <h2>Registrar Póliza</h2>
-                <table border="0">
-                    <tr>
-                        <td><h:outputText value="Aseguradora:" styleClass="tituloBold"/></td>
-                        <td> <p:selectOneMenu id="aseCodigo" value="#{lpolPolizaController.selected.aseCodigo}" styleClass="campoObligatorio">
-                                <f:selectItems value="#{laseAseguradoraController.itemsAvailableSelectOne}"
-                                               var="aseCodigoItem"
-                                               itemValue="#{aseCodigoItem}"/>
-                            </p:selectOneMenu>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Número de Póliza:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="npol" value="#{lpolPolizaController.selected.polNumpol}" size="20" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Fecha Inicio:" styleClass="tituloBold"/></td>
-                        <td><p:calendar id="polFecini" pattern="MM/dd/yyyy HH:mm:ss" value="#{lpolPolizaController.selected.polFecini}" title="#{bundle.EditLpolPolizaTitle_polFecini}" styleClass="campoObligatorio" showOn="button"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Fecha Fin:" styleClass="tituloBold"/></td>
-                        <td><p:calendar id="polVigencia" pattern="MM/dd/yyyy HH:mm:ss" value="#{lpolPolizaController.selected.polVigencia}" title="#{bundle.EditLpolPolizaTitle_polVigencia}" styleClass="campoObligatorio" showOn="button"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Derecho de Emisión:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="de" value="#{lpolPolizaController.selected.polDeremis}" size="3" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Seguro Campesino:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="se" value="#{lpolPolizaController.selected.polSegcamp}" size="3" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Super Intedencia de Bancos:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="su" value="#{lpolPolizaController.selected.polSupbanc}" size="3" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="iva (%):" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="iv" value="#{lpolPolizaController.selected.polIva}" size="3" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Prima Total ($):" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="pr" value="#{lpolPolizaController.selected.polPrimatotal}" size="12" styleClass="campoObligatorio"/></td>
-                    </tr>
-                </table>
-                <br/>
-                <input type="submit" value="Nuevo" name="nuevo" />
-                <input type="submit" value="Guardar" name="guardar" />
-                <input type="submit" value="Eliminar" name="eliminar" />
-                <input type="reset" value="Cancelar" name="cancelar" />
-                <br/>
+                <h:panelGroup id="display">
+                    <table border="0">
+                        <tr>
+                            <td><h:outputText value="Aseguradora:" styleClass="tituloBold"/></td>
+                            <td> <p:selectOneMenu id="aseCodigo" value="#{poliza.selected.aseCodigo}" styleClass="campoObligatorio">
+                                    <f:selectItems value="#{aseguradora.itemsAvailableSelectOne}"
+                                                   var="aseCodigoItem"
+                                                   itemLabel="#{aseCodigoItem.aseNombre}"
+                                                   itemValue="#{aseCodigoItem}"/>
+                                </p:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Número de Póliza:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="npol" value="#{poliza.selected.polNumpol}" size="20" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Fecha Inicio:" styleClass="tituloBold"/></td>
+                            <td><p:calendar id="polFecini" pattern="MM/dd/yyyy HH:mm:ss" value="#{poliza.selected.polFecini}" styleClass="campoObligatorio" showOn="button"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Fecha Fin:" styleClass="tituloBold"/></td>
+                            <td><p:calendar id="polVigencia" pattern="MM/dd/yyyy HH:mm:ss" value="#{poliza.selected.polVigencia}" styleClass="campoObligatorio" showOn="button"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Derecho de Emisión:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="de" value="#{poliza.selected.polDeremis}" size="3" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Seguro Campesino:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="se" value="#{poliza.selected.polSegcamp}" size="3" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Super Intedencia de Bancos:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="su" value="#{poliza.selected.polSupbanc}" size="3" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="iva (%):" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="iv" value="#{poliza.selected.polIva}" size="3" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Prima Total ($):" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="pr" value="#{poliza.selected.polPrimatotal}" size="12" styleClass="campoObligatorio"/></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <p:commandButton id="nuevo" value="Nuevo" action="#{poliza.nuevo}" update=":formulario"/>
+                    <p:commandButton id="guardar" value="Guardar" action="#{poliza.guardar}" update=":formulario"/>
+                    <p:commandButton id="eliminar" value="Eliminar" action="#{poliza.eliminar}" update=":formulario"/>
+                    <p:commandButton id="cancelar" value="Cancelar" action="#{poliza.nuevo}" update=":formulario"/>         
+                </h:panelGroup>
+                <br/>               
                 <br/>
                 <table border="1">
                     <tr>
-                        <td><select name="buscaPor">
-                                <option>Buscar por Número de Póliza:</option>
-                                <option>Buscar por Nombre de Aseguradora:</option>
-                            </select></td>
-                        <td><input type="text" name="txtBusca" value="" size="30" /></td>
-                        <td><input type="submit" value="Buscar" name="buscar" /></td>
+                        <td><h:outputText value="Buscar por " styleClass="tituloBold" style="vertical-align: middle"/></td>
+                        <td><p:selectOneMenu id="busc" styleClass="campoObligatorio" style="vertical-align: middle">  
+                                <f:selectItem itemLabel="NOMBRE" itemValue="NOMBRE"/>
+                                <f:selectItem itemLabel="RUC" itemValue="RUC"/>                               
+                            </p:selectOneMenu>
+                        </td>
+                        <td><p:inputText id="txtBusca" size="30" style="vertical-align: middle"/></td>
+                        <tr>
+                            <td colspan="3"><p:commandButton id="buscar" value="Buscar" action="#{poliza.buscar}" update=":formulario" style="float: right" /></td>
+                        </tr>
                     </tr>
-                </table>
+                </table>   
+                <br/>               
                 <br/>
+                <h:panelGroup id="listado" rendered="#{poliza.verTabla}">
+                    <p:dataTable id="datalist" value="#{poliza.items}" var="item"
+                                 selectionMode="single" selection="#{poliza.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.polCodigo}"
+                                 rows="10"                                 
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 style="width: 60%"
+                                 >
+
+                        <p:ajax event="rowSelect"   update=":formulario" listener="#{poliza.cerrar}"/> 
+                        <p:ajax event="rowUnselect" update=":formulario"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Aseguradora"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aseCodigo.aseNombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Número de Póliza"/>
+                            </f:facet>
+                            <h:outputText value="#{item.polNumpol}"/>
+                        </p:column>                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha Inicio"/>
+                            </f:facet>
+                            <h:outputText value="#{item.polFecini}"/>
+                        </p:column>       
+                    </p:dataTable>                 
+                </h:panelGroup>
             </h:form>
         </center>
     </h:body>

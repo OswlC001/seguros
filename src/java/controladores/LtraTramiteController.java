@@ -32,6 +32,9 @@ public class LtraTramiteController implements Serializable {
     }
 
     public LtraTramite getSelected() {
+        if (selected == null) {
+            selected = new LtraTramite();
+        }
         return selected;
     }
 

@@ -1,67 +1,116 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title><ui:insert name="title">Aseguradora</ui:insert></title>
+        <title>Aseguradora</title>
         <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
 
-    <h:body>
+    <h:body>            
         <center>
-            <h:form>
+            <h:form id="formulario">    
+                <p:growl id="growl" life="5000" />
                 <br/>
                 <h2>Registrar Aseguradora</h2>
-                <table border="0">
-                    <tr>
-                        <td><h:outputText value="RUC:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="ruc" value="#{laseAseguradoraController.selected.aseRuc}" size="20" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="NOMBRE:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="nom" value="#{laseAseguradoraController.selected.aseNombre}" size="40" styleClass="campoObligatorio" /></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="DIRECCIÓN:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="dir" value="#{laseAseguradoraController.selected.aseDirecc}" size="40" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="TELÉFONO:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="te" value="#{laseAseguradoraController.selected.aseTelef}" size="20" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center"><h:outputText value="DATOS DEL REPRESENTANTE"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="CÉDULA:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="ced" value="#{laseAseguradoraController.selected.aseCedrepresent}" size="20" styleClass="campoObligatorio"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="NOMBRE:" styleClass="tituloBold"/></td>
-                        <td><p:inputText id="nomb" value="#{laseAseguradoraController.selected.aseNomrepresent}" size="40" styleClass="campoObligatorio"/></td>
-                    </tr>
-                </table>
-                <br/>
-                <h:commandButton id="nuevo" value="Nuevo" action="#{laseAseguradoraController.prepareCreate}"/>
-                <h:commandButton id="guardar" value="Guardar" action="#{laseAseguradoraController.create}"/>
-                <input type="submit" value="Eliminar" name="eliminar" />
-                <input type="reset" value="Cancelar" name="cancelar" />
-                <br/>
+                <h:panelGroup id="display">
+                    <table border="0">                      
+                        <tr>
+                            <td><h:outputText value="RUC:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="ruc" value="#{aseguradora.selected.aseRuc}" size="20" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="NOMBRE:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="nom" value="#{aseguradora.selected.aseNombre}" size="40" styleClass="campoObligatorio" /></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="DIRECCIÓN:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="dir" value="#{aseguradora.selected.aseDirecc}" size="40" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="TELÉFONO:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="te" value="#{aseguradora.selected.aseTelef}" size="20" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center"><h:outputText value="DATOS DEL REPRESENTANTE"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="CÉDULA:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="ced" value="#{aseguradora.selected.aseCedrepresent}" size="20" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="NOMBRE:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="nomb" value="#{aseguradora.selected.aseNomrepresent}" size="40" styleClass="campoObligatorio"/></td>
+                        </tr>
+                    </table>                
+                    <br/>
+                    <p:commandButton id="nuevo" value="Nuevo" action="#{aseguradora.nuevo}" update=":formulario"/>
+                    <p:commandButton id="guardar" value="Guardar" action="#{aseguradora.guardar}" update=":formulario"/>
+                    <p:commandButton id="eliminar" value="Eliminar" action="#{aseguradora.eliminar}" update=":formulario"/>
+                    <p:commandButton id="cancelar" value="Cancelar" action="#{aseguradora.nuevo}" update=":formulario"/>                    
+                </h:panelGroup>
+                <br/>               
                 <br/>
                 <table border="1">
                     <tr>
-                        <td><select name="buscaPor">
-                                <option>Buscar por RUC:</option>
-                                <option>Buscar por Nombre:</option>
-                            </select></td>
-                        <td><input type="text" name="txtBusca" value="" size="30" /></td>
-                        <td><input type="submit" value="Buscar" name="buscar" /></td>
+                        <td><h:outputText value="Buscar por " styleClass="tituloBold" style="vertical-align: middle"/></td>
+                        <td><p:selectOneMenu id="busc" styleClass="campoObligatorio" style="vertical-align: middle">  
+                                <f:selectItem itemLabel="NOMBRE" itemValue="NOMBRE"/>
+                                <f:selectItem itemLabel="RUC" itemValue="RUC"/>                               
+                            </p:selectOneMenu>
+                        </td>
+                        <td><p:inputText id="txtBusca" size="30" style="vertical-align: middle"/></td>
+                        <tr>
+                            <td colspan="3"><p:commandButton id="buscar" value="Buscar" action="#{aseguradora.buscar}" update=":formulario" style="float: right" /></td>
+                        </tr>
                     </tr>
-                </table>
+                </table>   
+                <br/>               
                 <br/>
+                <h:panelGroup id="listado" rendered="#{aseguradora.verTabla}">
+                    <p:dataTable id="datalist" value="#{aseguradora.items}" var="item"
+                                 selectionMode="single" selection="#{aseguradora.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.aseCodigo}"
+                                 rows="10"                                 
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 style="width: 60%"
+                                 >
+
+                        <p:ajax event="rowSelect"   update=":formulario" listener="#{aseguradora.cerrar}"/> 
+                        <p:ajax event="rowUnselect" update=":formulario"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="RUC"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aseRuc}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aseNombre}"/>
+                        </p:column>                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Teléfono"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aseTelef}"/>
+                        </p:column>                      
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Representante"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aseNomrepresent}"/>
+                        </p:column>                       
+                    </p:dataTable>                 
+                </h:panelGroup>
             </h:form>
         </center>
     </h:body>

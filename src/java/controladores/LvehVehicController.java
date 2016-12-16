@@ -135,6 +135,7 @@ public class LvehVehicController implements Serializable {
         }
 
         java.math.BigDecimal getKey(String value) {
+            System.out.println("value ------ " + value);
             java.math.BigDecimal key;
             key = new java.math.BigDecimal(value);
             return key;

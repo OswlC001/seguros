@@ -115,7 +115,6 @@ BODY {
 .comboObligatorio {
     FONT: 9px Verdana, Arial, Helvetica, sans-serif;
     background-color:#bbcad9;
-    TEXT-TRANSFORM: uppercase;
 }
 .comboOpcional {
     FONT: 9px Verdana, Arial, Helvetica, sans-serif;

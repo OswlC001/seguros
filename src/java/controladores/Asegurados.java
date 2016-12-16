@@ -1,9 +1,10 @@
 package controladores;
 
-import entidades.LaseAseguradora;
+import entidades.LasgAsegurados;
 import controladores.util.JsfUtil;
 import controladores.util.JsfUtil.PersistAction;
-import sesiones.LaseAseguradoraFacade;
+import entidades.LpolPoliza;
+import sesiones.LasgAseguradosFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,24 +20,47 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("laseAseguradoraController")
+@Named("asegurados")
 @SessionScoped
-public class LaseAseguradoraController implements Serializable {
+public class Asegurados implements Serializable {
 
     @EJB
-    private sesiones.LaseAseguradoraFacade ejbFacade;
-    private List<LaseAseguradora> items = null;
-    private LaseAseguradora selected;
+    private sesiones.LasgAseguradosFacade ejbFacade;
+    private List<LasgAsegurados> items = null;
+    private LasgAsegurados selected;
+    private String placa;
+    private String numPoliza;
+    private boolean verTabla;
 
-    public LaseAseguradoraController() {
+    public Asegurados() {
+        nuevo();
     }
 
-    public LaseAseguradora getSelected() {
+    public LasgAsegurados getSelected() {
+        if (selected == null) {
+            selected = new LasgAsegurados();
+        }
         return selected;
     }
 
-    public void setSelected(LaseAseguradora selected) {
+    public void setSelected(LasgAsegurados selected) {
         this.selected = selected;
+    }
+
+    public boolean isVerTabla() {
+        return verTabla;
+    }
+
+    public void setVerTabla(boolean verTabla) {
+        this.verTabla = verTabla;
+    }
+
+    public void cerrar() {
+        verTabla = false;
+    }
+
+    public void buscar() {
+        verTabla = true;
     }
 
     protected void setEmbeddableKeys() {
@@ -45,36 +69,59 @@ public class LaseAseguradoraController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private LaseAseguradoraFacade getFacade() {
+    private LasgAseguradosFacade getFacade() {
         return ejbFacade;
     }
 
-    public LaseAseguradora prepareCreate() {
-        selected = new LaseAseguradora();
-        initializeEmbeddableKey();
-        return selected;
+    public String getPlaca() {
+        return placa;
     }
 
-    public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LaseAseguradoraCreated"));
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getNumPoliza() {
+        return numPoliza;
+    }
+
+    public void setNumPoliza(String numPoliza) {
+        this.numPoliza = numPoliza;
+    }
+
+    public void nuevo() {
+        verTabla = false;
+        selected = new LasgAsegurados();
+    }
+
+    public void excluir() {
+        guardar();
+    }
+
+    public void incluir() {
+        guardar();
+    }
+
+    public void guardar() {
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LasgAseguradosCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("LaseAseguradoraUpdated"));
+    public void actualizar() {
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("LasgAseguradosUpdated"));
     }
 
-    public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("LaseAseguradoraDeleted"));
+    public void eliminar() {
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("LasgAseguradosDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<LaseAseguradora> getItems() {
+    public List<LasgAsegurados> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +156,29 @@ public class LaseAseguradoraController implements Serializable {
         }
     }
 
-    public LaseAseguradora getLaseAseguradora(java.math.BigDecimal id) {
+    public LasgAsegurados getLasgAsegurados(java.math.BigDecimal id) {
         return getFacade().find(id);
     }
 
-    public List<LaseAseguradora> getItemsAvailableSelectMany() {
+    public List<LasgAsegurados> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<LaseAseguradora> getItemsAvailableSelectOne() {
+    public List<LasgAsegurados> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = LaseAseguradora.class)
-    public static class LaseAseguradoraControllerConverter implements Converter {
+    @FacesConverter(forClass = LasgAsegurados.class)
+    public static class LasgAseguradosControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            LaseAseguradoraController controller = (LaseAseguradoraController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "laseAseguradoraController");
-            return controller.getLaseAseguradora(getKey(value));
+            Asegurados controller = (Asegurados) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "asegurados");
+            return controller.getLasgAsegurados(getKey(value));
         }
 
         java.math.BigDecimal getKey(String value) {
@@ -151,11 +198,11 @@ public class LaseAseguradoraController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof LaseAseguradora) {
-                LaseAseguradora o = (LaseAseguradora) object;
-                return getStringKey(o.getAseCodigo());
+            if (object instanceof LasgAsegurados) {
+                LasgAsegurados o = (LasgAsegurados) object;
+                return getStringKey(o.getAsgCodigo());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), LaseAseguradora.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), LasgAsegurados.class.getName()});
                 return null;
             }
         }

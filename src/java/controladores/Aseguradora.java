@@ -1,11 +1,12 @@
 package controladores;
 
-import entidades.LpolPoliza;
+import entidades.LaseAseguradora;
 import controladores.util.JsfUtil;
 import controladores.util.JsfUtil.PersistAction;
-import sesiones.LpolPolizaFacade;
+import sesiones.LaseAseguradoraFacade;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,27 +20,37 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("lpolPolizaController")
+@Named("aseguradora")
 @SessionScoped
-public class LpolPolizaController implements Serializable {
+public class Aseguradora implements Serializable {
 
     @EJB
-    private sesiones.LpolPolizaFacade ejbFacade;
-    private List<LpolPoliza> items = null;
-    private LpolPoliza selected;
+    private sesiones.LaseAseguradoraFacade ejbFacade;
+    private List<LaseAseguradora> items = null;
+    private LaseAseguradora selected;
+    private boolean verTabla;
 
-    public LpolPolizaController() {
+    public Aseguradora() {
+        nuevo();
     }
 
-    public LpolPoliza getSelected() {
+    public LaseAseguradora getSelected() {
         if (selected == null) {
-            selected = new LpolPoliza();
+            selected = new LaseAseguradora();
         }
         return selected;
     }
 
-    public void setSelected(LpolPoliza selected) {
+    public void setSelected(LaseAseguradora selected) {
         this.selected = selected;
+    }
+
+    public boolean isVerTabla() {
+        return verTabla;
+    }
+
+    public void setVerTabla(boolean verTabla) {
+        this.verTabla = verTabla;
     }
 
     protected void setEmbeddableKeys() {
@@ -48,36 +59,43 @@ public class LpolPolizaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private LpolPolizaFacade getFacade() {
+    public void cerrar() {
+        verTabla = false;
+    }
+
+    private LaseAseguradoraFacade getFacade() {
         return ejbFacade;
     }
 
-    public LpolPoliza prepareCreate() {
-        selected = new LpolPoliza();
-        initializeEmbeddableKey();
-        return selected;
+    public void nuevo() {
+        verTabla = false;
+        selected = new LaseAseguradora();
     }
 
-    public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LpolPolizaCreated"));
+    public void guardar() {
+        persist(PersistAction.CREATE, "Registro guardado correctamente");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("LpolPolizaUpdated"));
+    public void buscar() {
+        verTabla = true;
     }
 
-    public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("LpolPolizaDeleted"));
+    public void actualizar() {
+        persist(PersistAction.UPDATE, "Registro actualizado correctamente");
+    }
+
+    public void eliminar() {
+        persist(PersistAction.DELETE, "Registro eliminado correctamente");
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<LpolPoliza> getItems() {
+    public List<LaseAseguradora> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -112,32 +130,33 @@ public class LpolPolizaController implements Serializable {
         }
     }
 
-    public LpolPoliza getLpolPoliza(java.math.BigDecimal id) {
+    public LaseAseguradora getLaseAseguradora(java.math.BigDecimal id) {
         return getFacade().find(id);
     }
 
-    public List<LpolPoliza> getItemsAvailableSelectMany() {
+    public List<LaseAseguradora> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<LpolPoliza> getItemsAvailableSelectOne() {
+    public List<LaseAseguradora> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = LpolPoliza.class)
-    public static class LpolPolizaControllerConverter implements Converter {
+    @FacesConverter(forClass = LaseAseguradora.class)
+    public static class LaseAseguradoraControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            LpolPolizaController controller = (LpolPolizaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "lpolPolizaController");
-            return controller.getLpolPoliza(getKey(value));
+            Aseguradora controller = (Aseguradora) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "aseguradora");
+            return controller.getLaseAseguradora(getKey(value));
         }
 
         java.math.BigDecimal getKey(String value) {
+            System.out.println("value ---- " + value);
             java.math.BigDecimal key;
             key = new java.math.BigDecimal(value);
             return key;
@@ -154,11 +173,11 @@ public class LpolPolizaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof LpolPoliza) {
-                LpolPoliza o = (LpolPoliza) object;
-                return getStringKey(o.getPolCodigo());
+            if (object instanceof LaseAseguradora) {
+                LaseAseguradora o = (LaseAseguradora) object;
+                return getStringKey(o.getAseCodigo());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), LpolPoliza.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), LaseAseguradora.class.getName()});
                 return null;
             }
         }

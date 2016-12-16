@@ -32,6 +32,9 @@ public class LsinSiniestroController implements Serializable {
     }
 
     public LsinSiniestro getSelected() {
+        if (selected == null) {
+            selected = new LsinSiniestro();
+        }
         return selected;
     }
 

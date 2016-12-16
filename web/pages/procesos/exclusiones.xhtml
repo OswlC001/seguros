@@ -3,52 +3,107 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title><ui:insert name="title">Aseguradora</ui:insert></title>
+        <title><ui:insert name="title">Exclusiones</ui:insert></title>
         <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
 
     <h:body>
         <center>
-            <h:form>
-            <br/>
-            <h2>Exclusiones</h2>
-            <table border="0">
-                <tr>
-                    <td><h:outputText value="FECHA:" styleClass="tituloBold"/></td>
-                    <td><p:inputText id="fec" value="#{lasgAseguradosController.selected.asgFecha}" size="12" styleClass="campoObligatorio"/></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="VEHICULO:" styleClass="tituloBold"/></td>
-                    <td><p:inputText id="veh" value="#{lasgAseguradosController.selected.vehCodigo.vehPlaca}" size="10" styleClass="campoObligatorio"/></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="PÓLIZA:" styleClass="tituloBold"/></td>
-                    <td><p:inputText id="pol" value="#{lasgAseguradosController.selected.polCodigo.polNumpol}" size="20" styleClass="campoObligatorio"/></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="PRIMA:" styleClass="tituloBold"/></td>
-                    <td><p:inputText id="pri" value="#{lasgAseguradosController.selected.asgPrima}" size="10" styleClass="campoObligatorio"/></td>
-                </tr>
-            </table>
-            <br/>
-            <input type="submit" value="Excluir" name="excluir" />
-            <input type="reset" value="Cancelar" name="cancelar" />
-            <br/>
-            <br/>
-            <table border="1">
-                <tr>
-                    <td><select name="buscaPor">
-                            <option>Buscar por vehículo:</option>
-                        </select></td>
-                    <td><input type="text" name="txtBusca" value="" size="30" /></td>
-                    <td><input type="submit" value="Buscar" name="buscar" /></td>
-                </tr>
-            </table>
-            <br/>
-        </h:form>
+            <h:form id="formulario">
+                <p:growl id="growl" life="5000" />
+                <br/>
+                <h2>Inclusiones</h2>
+                <h:panelGroup id="display">
+                    <table border="0">
+                        <tr>
+                            <td><h:outputText value="FECHA:" styleClass="tituloBold"/></td>
+                            <td><p:calendar id="asgFecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{asegurados.selected.asgFecha}" showOn="button" styleClass="campoObligatorio"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="VEHICULO:" styleClass="tituloBold"/></td>
+                            <td> <p:selectOneMenu id="vehCodigo" value="#{asegurados.selected.vehCodigo}" styleClass="campoObligatorio">
+                                    <f:selectItems value="#{lvehVehicController.itemsAvailableSelectOne}"
+                                                   var="vehCodigoItem"
+                                                   itemLabel="#{vehCodigoItem.vehPlaca}"
+                                                   itemValue="#{vehCodigoItem}"/>
+                                </p:selectOneMenu></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="PÓLIZA:" styleClass="tituloBold"/></td>
+                            <td><p:selectOneMenu id="polCodigo" value="#{asegurados.selected.polCodigo}" styleClass="campoObligatorio">
+                                    <f:selectItems value="#{poliza.itemsAvailableSelectOne}"
+                                                   var="polCodigoItem"
+                                                   itemLabel="#{polCodigoItem.polNumpol}"
+                                                   itemValue="#{polCodigoItem}"/>
+                                </p:selectOneMenu></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="PRIMA:" styleClass="tituloBold"/></td>
+                            <td><p:inputText id="pri" value="#{asegurados.selected.asgPrima}" size="10" styleClass="campoObligatorio"/></td>
+                        </tr>   
+                    </table>
+                    <br/>
+                    <p:commandButton id="guardar" value="Excluir" action="#{asegurados.excluir}" update=":formulario"/>
+                    <p:commandButton id="cancelar" value="Cancelar" action="#{asegurados.nuevo}" update=":formulario"/>  
+                </h:panelGroup>
+                <br/>               
+                <br/>
+                <table border="1">
+                    <tr>
+                        <td><h:outputText value="Buscar por " styleClass="tituloBold" style="vertical-align: middle"/></td>
+                        <td><p:selectOneMenu id="busc" styleClass="campoObligatorio" style="vertical-align: middle">  
+                                <f:selectItem itemLabel="NOMBRE" itemValue="NOMBRE"/>
+                                <f:selectItem itemLabel="RUC" itemValue="RUC"/>                               
+                            </p:selectOneMenu>
+                        </td>
+                        <td><p:inputText id="txtBusca" size="30" style="vertical-align: middle"/></td>
+                        <tr>
+                            <td colspan="3"><p:commandButton id="buscar" value="Buscar" action="#{asegurados.buscar}" update=":formulario" style="float: right" /></td>
+                        </tr>
+                    </tr>
+                </table>   
+                <br/>               
+                <br/>
+                <h:panelGroup id="listado" rendered="#{asegurados.verTabla}">
+                    <p:dataTable id="datalist" value="#{asegurados.items}" var="item"
+                                 selectionMode="single" selection="#{asegurados.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.asgCodigo}"
+                                 rows="10"                                 
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 style="width: 60%"
+                                 >
+
+                        <p:ajax event="rowSelect"   update=":formulario" listener="#{asegurados.cerrar}"/> 
+                        <p:ajax event="rowUnselect" update=":formulario"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Vehículo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehCodigo.vehPlaca}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Aseguradora"/>
+                            </f:facet>
+                            <h:outputText value="#{item.polCodigo.aseCodigo.aseNombre}"/>
+                        </p:column>                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha de Seguro"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asgFecha}"/>
+                        </p:column>       
+                    </p:dataTable>                 
+                </h:panelGroup>
+            </h:form>
         </center>
     </h:body>
 </html>

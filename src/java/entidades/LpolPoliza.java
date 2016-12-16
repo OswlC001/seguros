@@ -13,12 +13,15 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,6 +56,8 @@ public class LpolPoliza implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "POL_CODIGO")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_POLIZA_")
+    @SequenceGenerator(name = "SEQ_POLIZA_", sequenceName = "SEQ_POLIZA", initialValue = 1, allocationSize = 1)
     private BigDecimal polCodigo;
     @Size(max = 20)
     @Column(name = "POL_NUMPOL")
@@ -199,5 +204,5 @@ public class LpolPoliza implements Serializable {
     public String toString() {
         return "entidades.LpolPoliza[ polCodigo=" + polCodigo + " ]";
     }
-    
+
 }

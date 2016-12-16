@@ -72,7 +72,7 @@ public class Poliza implements Serializable {
     }
 
     public void guardar() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LpolPolizaCreated"));
+        persist(PersistAction.CREATE, "Registro guardado correctamente");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
@@ -83,11 +83,11 @@ public class Poliza implements Serializable {
     }
 
     public void actualizar() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("LpolPolizaUpdated"));
+        persist(PersistAction.UPDATE, "Registro actualizado correctamente");
     }
 
     public void eliminar() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("LpolPolizaDeleted"));
+        persist(PersistAction.DELETE, "Registro eliminado correctamente");
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.

@@ -3,6 +3,7 @@ package controladores;
 import entidades.LsinSiniestro;
 import controladores.util.JsfUtil;
 import controladores.util.JsfUtil.PersistAction;
+import entidades.LvehVehic;
 import sesiones.LsinSiniestroFacade;
 
 import java.io.Serializable;
@@ -18,28 +19,67 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ValueChangeEvent;
+import sesiones.LvehVehicFacade;
 
-@Named("lsinSiniestroController")
+@Named("siniestro")
 @SessionScoped
-public class LsinSiniestroController implements Serializable {
+public class Siniestro implements Serializable {
+
+    @EJB
+    private LvehVehicFacade lvehVehicFacade;
 
     @EJB
     private sesiones.LsinSiniestroFacade ejbFacade;
     private List<LsinSiniestro> items = null;
     private LsinSiniestro selected;
+    private boolean verTabla;
 
-    public LsinSiniestroController() {
+    public Siniestro() {
+        nuevo();
     }
 
     public LsinSiniestro getSelected() {
         if (selected == null) {
             selected = new LsinSiniestro();
         }
+        
+        if (selected.getVehCodigo() == null) {
+            LvehVehic v = new LvehVehic();
+            v.setVehPlaca("");
+            selected.setVehCodigo(v);
+        }
         return selected;
     }
 
     public void setSelected(LsinSiniestro selected) {
         this.selected = selected;
+    }    
+
+    public boolean isVerTabla() {
+        return verTabla;
+    }
+
+    public void setVerTabla(boolean verTabla) {
+        this.verTabla = verTabla;
+    }
+
+    public void cerrar() {
+        verTabla = false;
+    }
+
+    public void buscarVehiculo(ValueChangeEvent event) {
+        if (event.getNewValue() != null) {
+            String placa_ = event.getNewValue().toString();
+            LvehVehic vehiculo = lvehVehicFacade.findByCampo("vehPlaca", placa_);
+            if (vehiculo != null && selected != null) {
+                selected.setVehCodigo(vehiculo);
+            }
+        }
+    }
+
+    public void buscar() {
+        verTabla = true;
     }
 
     protected void setEmbeddableKeys() {
@@ -52,25 +92,24 @@ public class LsinSiniestroController implements Serializable {
         return ejbFacade;
     }
 
-    public LsinSiniestro prepareCreate() {
+    public void nuevo() {
+        verTabla = false;
         selected = new LsinSiniestro();
-        initializeEmbeddableKey();
-        return selected;
     }
 
-    public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LsinSiniestroCreated"));
+    public void guardar() {
+        persist(PersistAction.CREATE, "Registro guardado correctamente");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("LsinSiniestroUpdated"));
+    public void actualizar() {
+        persist(PersistAction.UPDATE, "Registro actualizado correctamente");
     }
 
-    public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("LsinSiniestroDeleted"));
+    public void eliminar() {
+        persist(PersistAction.DELETE, "Registro eliminado correctamente");
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -132,8 +171,8 @@ public class LsinSiniestroController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            LsinSiniestroController controller = (LsinSiniestroController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "lsinSiniestroController");
+            Siniestro controller = (Siniestro) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "siniestro");
             return controller.getLsinSiniestro(getKey(value));
         }
 

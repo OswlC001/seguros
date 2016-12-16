@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title><ui:insert name="title">Exclusiones</ui:insert></title>
+        <title><ui:insert name="title">Inclusiones</ui:insert></title>
         <h:outputStylesheet library="css" name="style.css"/>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
@@ -18,7 +18,7 @@
             <h:form id="formulario">
                 <p:growl id="growl" life="5000" />
                 <br/>
-                <h2>Inclusiones</h2>
+                <h2>Exclusiones</h2>
                 <h:panelGroup id="display">
                     <table border="0">
                         <tr>
@@ -27,12 +27,9 @@
                         </tr>
                         <tr>
                             <td><h:outputText value="VEHICULO:" styleClass="tituloBold"/></td>
-                            <td> <p:selectOneMenu id="vehCodigo" value="#{asegurados.selected.vehCodigo}" styleClass="campoObligatorio">
-                                    <f:selectItems value="#{lvehVehicController.itemsAvailableSelectOne}"
-                                                   var="vehCodigoItem"
-                                                   itemLabel="#{vehCodigoItem.vehPlaca}"
-                                                   itemValue="#{vehCodigoItem}"/>
-                                </p:selectOneMenu></td>
+                            <td> 
+                                <p:inputText id="placa" value="#{asegurados.selected.vehCodigo.vehPlaca}" valueChangeListener="#{asegurados.buscarVehiculo}" size="10" styleClass="campoObligatorio"/>
+                            </td>
                         </tr>
                         <tr>
                             <td><h:outputText value="PÓLIZA:" styleClass="tituloBold"/></td>
@@ -49,7 +46,7 @@
                         </tr>   
                     </table>
                     <br/>
-                    <p:commandButton id="guardar" value="Excluir" action="#{asegurados.excluir}" update=":formulario"/>
+                    <p:commandButton id="excluir" value="Excluir" action="#{asegurados.excluir}" update=":formulario"/>
                     <p:commandButton id="cancelar" value="Cancelar" action="#{asegurados.nuevo}" update=":formulario"/>  
                 </h:panelGroup>
                 <br/>               

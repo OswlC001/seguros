@@ -6,7 +6,13 @@
 package sesiones;
 
 import java.util.List;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,12 +41,37 @@ public abstract class AbstractFacade<T> {
     }
 
     public T find(Object id) {
-        return getEntityManager().find(entityClass, id);
+        T t;
+        try {
+            t = getEntityManager().find(entityClass, id);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+        return t;
+    }
+
+    public T findByCampo(String campo, Object valor) {
+        T t = null;
+        List<T> l = findAll(campo, valor);
+        if (!l.isEmpty()) {
+            t = l.get(0);
+        }
+        return t;
     }
 
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
+
+    public List<T> findAll(String campo, Object valor) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root<T> c = cq.from(entityClass);
+        cq.select(c);
+        cq.where(cb.equal(c.get(campo), valor));
         return getEntityManager().createQuery(cq).getResultList();
     }
 
@@ -60,5 +91,5 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
+
 }

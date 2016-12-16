@@ -3,7 +3,7 @@ package controladores;
 import entidades.LasgAsegurados;
 import controladores.util.JsfUtil;
 import controladores.util.JsfUtil.PersistAction;
-import entidades.LpolPoliza;
+import entidades.LvehVehic;
 import sesiones.LasgAseguradosFacade;
 
 import java.io.Serializable;
@@ -19,17 +19,21 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ValueChangeEvent;
+import sesiones.LvehVehicFacade;
 
 @Named("asegurados")
 @SessionScoped
 public class Asegurados implements Serializable {
 
     @EJB
+    private LvehVehicFacade lvehVehicFacade;
+
+    @EJB
     private sesiones.LasgAseguradosFacade ejbFacade;
+
     private List<LasgAsegurados> items = null;
     private LasgAsegurados selected;
-    private String placa;
-    private String numPoliza;
     private boolean verTabla;
 
     public Asegurados() {
@@ -39,6 +43,12 @@ public class Asegurados implements Serializable {
     public LasgAsegurados getSelected() {
         if (selected == null) {
             selected = new LasgAsegurados();
+        }
+
+        if (selected.getVehCodigo() == null) {
+            LvehVehic v = new LvehVehic();
+            v.setVehPlaca("");
+            selected.setVehCodigo(v);
         }
         return selected;
     }
@@ -59,6 +69,16 @@ public class Asegurados implements Serializable {
         verTabla = false;
     }
 
+    public void buscarVehiculo(ValueChangeEvent event) {
+        if (event.getNewValue() != null) {
+            String placa_ = event.getNewValue().toString();
+            LvehVehic vehiculo = lvehVehicFacade.findByCampo("vehPlaca", placa_);
+            if (vehiculo != null && selected != null) {
+                selected.setVehCodigo(vehiculo);
+            }
+        }
+    }
+
     public void buscar() {
         verTabla = true;
     }
@@ -71,22 +91,6 @@ public class Asegurados implements Serializable {
 
     private LasgAseguradosFacade getFacade() {
         return ejbFacade;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public String getNumPoliza() {
-        return numPoliza;
-    }
-
-    public void setNumPoliza(String numPoliza) {
-        this.numPoliza = numPoliza;
     }
 
     public void nuevo() {
@@ -103,18 +107,18 @@ public class Asegurados implements Serializable {
     }
 
     public void guardar() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LasgAseguradosCreated"));
+        persist(PersistAction.CREATE, "Registro guardado correctamente");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void actualizar() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("LasgAseguradosUpdated"));
+        persist(PersistAction.UPDATE, "Registro actualizado correctamente");
     }
 
     public void eliminar() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("LasgAseguradosDeleted"));
+        persist(PersistAction.DELETE, "Registro eliminado correctamente");
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
